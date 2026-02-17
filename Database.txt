@@ -1,0 +1,115 @@
+-- =======================
+-- USERS
+-- =======================
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    gender VARCHAR(10),
+    birthday DATE
+);
+
+INSERT INTO users VALUES
+(1,'สมชาย ใจดี','somchai@mail.com','123456','male','2002-05-10'),
+(2,'สมหญิง แสนสวย','somying@mail.com','123456','female','2001-11-22'),
+(3,'อนันต์ เก่งมาก','anan@mail.com','123456','male','2000-03-15'),
+(4,'วิภา รุ่งเรือง','wipa@mail.com','123456','female','2003-07-09'),
+(5,'ปกรณ์ สายลุย','pakorn@mail.com','123456','male','1999-12-01');
+
+-- =======================
+-- EVENTS
+-- =======================
+CREATE TABLE events (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150),
+    description TEXT,
+    attribute VARCHAR(100),
+    start_date DATETIME,
+    end_date DATETIME,
+    location VARCHAR(150),
+    max_user INT,
+    create_by INT,
+    create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (create_by) REFERENCES users(user_id)
+);
+
+INSERT INTO events VALUES
+(1,'อบรมเขียนเว็บ','เรียน HTML CSS PHP','IT','2026-03-01 09:00:00','2026-03-01 16:00:00','ห้องคอม A',50,1,NOW()),
+(2,'แข่ง e-sport','แข่งเกมระดับมหาลัย','Game','2026-03-05 10:00:00','2026-03-05 20:00:00','หอประชุม',100,2,NOW()),
+(3,'สัมมนา AI','รู้จัก AI ยุคใหม่','Tech','2026-03-10 13:00:00','2026-03-10 17:00:00','อาคารวิทย์',80,3,NOW()),
+(4,'จิตอาสา','ปลูกป่า','Volunteer','2026-03-15 08:00:00','2026-03-15 15:00:00','เขตป่า',40,4,NOW()),
+(5,'ตลาดนัดนักศึกษา','ขายของทำมือ','Business','2026-03-20 10:00:00','2026-03-20 18:00:00','ลานหน้าอาคาร',60,5,NOW());
+
+-- =======================
+-- EVENT IMAGES
+-- =======================
+CREATE TABLE event_images (
+    image_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id INT,
+    image_path VARCHAR(255),
+    FOREIGN KEY (event_id) REFERENCES events(event_id)
+);
+
+INSERT INTO event_images VALUES
+(1,1,'img/web.jpg'),
+(2,2,'img/esport.jpg'),
+(3,3,'img/ai.jpg'),
+(4,4,'img/volunteer.jpg'),
+(5,5,'img/market.jpg');
+
+-- =======================
+-- REGISTRATIONS
+-- =======================
+CREATE TABLE registrations (
+    reg_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    event_id INT,
+    status VARCHAR(50),
+    registered DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (event_id) REFERENCES events(event_id)
+);
+
+INSERT INTO registrations VALUES
+(1,1,1,'confirmed',NOW()),
+(2,2,1,'confirmed',NOW()),
+(3,3,2,'pending',NOW()),
+(4,4,3,'confirmed',NOW()),
+(5,5,4,'confirmed',NOW());
+
+-- =======================
+-- OTP
+-- =======================
+CREATE TABLE otps (
+    otp_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id INT,
+    expired DATETIME,
+    FOREIGN KEY (event_id) REFERENCES events(event_id)
+);
+
+INSERT INTO otps VALUES
+(1,1,'2026-03-01 16:30:00'),
+(2,2,'2026-03-05 20:30:00'),
+(3,3,'2026-03-10 17:30:00'),
+(4,4,'2026-03-15 15:30:00'),
+(5,5,'2026-03-20 18:30:00');
+
+-- =======================
+-- CHECKINS
+-- =======================
+CREATE TABLE checkins (
+    checkin_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    otp_id INT,
+    checkin_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (otp_id) REFERENCES otps(otp_id)
+);
+
+INSERT INTO checkins VALUES
+(1,1,1,NOW()),
+(2,2,1,NOW()),
+(3,3,2,NOW()),
+(4,4,3,NOW()),
+(5,5,4,NOW());

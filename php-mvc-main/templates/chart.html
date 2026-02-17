@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js with Tailwind</title>
+    <!-- 1. เรียกใช้ Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 2. เรียกใช้ Chart.js (สำคัญมาก!) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style> body { font-family: 'Sarabun', sans-serif; } </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-8 flex flex-col items-center">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-8">กราฟปลาที่ตกได้ครึ่งปีแรก</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
+        
+        <!-- กราฟที่ 1: กราฟแท่ง (Bar Chart) -->
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-xl font-bold text-gray-700 mb-4">สถิติการเข้าร่วมกิจกรรม (รายเดือน)</h2>
+            <!-- พื้นที่วาดกราฟ -->
+            <div class="relative h-64 w-full">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+
+        <!-- กราฟที่ 2: กราฟโดนัท (Doughnut Chart) -->
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-xl font-bold text-gray-700 mb-4">ประเภทกิจกรรมที่สนใจ</h2>
+            <!-- พื้นที่วาดกราฟ -->
+            <div class="relative h-64 w-full flex justify-center">
+                <canvas id="doughnutChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 3. ส่วน JavaScript สำหรับสร้างกราฟ -->
+    <script>
+        // --- กราฟที่ 1: Bar Chart ---
+        const ctxBar = document.getElementById('barChart');
+
+        new Chart(ctxBar, {
+            type: 'bar', // ประเภทกราฟ: bar, line, pie, doughnut
+            data: {
+                labels: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.'], // แกน X
+                datasets: [{
+                    label: 'จำนวนครั้งที่เข้าร่วม',
+                    data: [12, 19, 3, 5, 2, 3], // ข้อมูลตัวเลข
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.6)', // สีแท่ง (Tailwind Blue-500)
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                    ],
+                    borderWidth: 1,
+                    borderRadius: 5 // มุมมนของแท่ง
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // ให้ยืดตามกล่องแม่
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // --- กราฟที่ 2: Doughnut Chart ---
+        const ctxDoughnut = document.getElementById('doughnutChart');
+
+        new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: {
+                labels: ['ช่อน', 'ชะโด', 'กระสูป', 'ค้าว'],
+                datasets: [{
+                    label: 'จำนวนกิจกรรม',
+                    data: [10, 5, 8, 3],
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.7)',  // Red
+                        'rgba(59, 130, 246, 0.7)', // Blue
+                        'rgba(16, 185, 129, 0.7)', // Green
+                        'rgba(245, 158, 11, 0.7)'  // Yellow
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+
+</body>
+</html>

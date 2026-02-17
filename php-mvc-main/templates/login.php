@@ -12,12 +12,12 @@
   <div class="flex flex-col h-full w-full">
     <?php include 'navbar.html' ?>
     <div class="flex flex-col items-center justify-center h-full w-full">
-      <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6 h-[70%] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+      <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6 h-[70%] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition duration-500">
         <h2 class="text-6xl font-bold text-gray-900 mb-4 text-center mt-8">เข้าสู่ระบบ</h2>
         <form class="flex flex-col gap-8 mt-20">
-          <input type="email" class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" 
+          <input type="email" class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-500" require
           placeholder="ชื่อผูใช้งานหรืออีเมล">
-          <input type="password" class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" 
+          <input type="password" class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-500" require
           placeholder="ใส่รหัสผ่าน">
           <div class="flex items-center justify-between flex-wrap">
             <a href="#" class="text-xl text-blue-500 hover:underline mt-4">ลืมรหัสผ่าน</a>
@@ -31,3 +31,6 @@
 </body>
 
 </html>
+
+
+<!--ยังไม่ไส่ค่าอะไร ยังส่งข่อมูลไม่ได้ อันนี้ต้องทำเองแล้วละ-->

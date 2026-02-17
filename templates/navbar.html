@@ -1,0 +1,45 @@
+<nav class="bg-gray-400 w-full z-50 top-0 shadow-lg fixed">  
+        <!-- 2. สร้าง Container ภายในเพื่อจัด Layout แนวนอน (Top Bar) -->
+        <div class="px-4 h-16 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <div class="text-xl font-bold mx-4 text-white"> <!-- เอา w-1/2 ออก ใช้ flex ธรรมชาติ -->
+                <h1><a href="/home">Acctivity</a></h1>
+            </div>
+
+            <!-- Desktop Menu -->
+            <!-- 3. แก้ hidden-md:flex เป็น hidden md:flex -->
+            <div class="hidden md:flex flex-row gap-4 items-center">
+                <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
+                    <a href="/login">เข้าสู่ระบบ</a>
+                </div>
+                <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
+                    <a href="/createAcc">ลงทะเบียน</a>
+                </div>
+                <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
+                    <a href="-">Test Demo</a>
+                </div>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <!-- ใช้ md:hidden เพื่อซ่อนเมื่อจอใหญ่ -->
+            <div class="flex items-center md:hidden">
+                <button id="mobile-menu-button" type="button"
+                    class="text-white hover:text-gray-200 focus:outline-none p-2 rounded-md">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <!-- อยู่นอก div container ด้านบน แต่อยู่ใน nav เพื่อให้เลื่อนลงมาได้ -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-100 border-t border-gray-300">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="login.php" class="block text-gray-700 hover:text-white hover:bg-gray-500 px-3 py-2 rounded-md text-base font-medium">เข้าสู่ระบบ</a>
+                <a href="createAcc.php" class="block text-gray-700 hover:text-white hover:bg-gray-500 px-3 py-2 rounded-md text-base font-medium">ลงทะเบียน</a>
+                <a href="-" class="block text-gray-700 hover:text-white hover:bg-gray-500 px-3 py-2 rounded-md text-base font-medium">Test Demo</a>
+            </div>
+        </div>
+    </nav>

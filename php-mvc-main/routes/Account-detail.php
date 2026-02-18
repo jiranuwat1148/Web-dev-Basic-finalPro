@@ -1,6 +1,4 @@
 <?php
- renderView('Account-detail');   
-
-    
+renderView('Account-detail');
 
 

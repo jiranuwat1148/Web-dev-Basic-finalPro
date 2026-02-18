@@ -21,21 +21,33 @@
             <p class="text-gray-500 text-sm">Member since 2024</p>
 
             <div class="mt-8 w-full px-6 space-y-2">
-                <?php $page = isset($_GET['page']) ? $_GET['page']  : 'profile_info'; ?>
-                <form action="Account-detail.php" method="get" class="flex flex-col flex-1 ">
-                    <button type="submit" name="subHis" href="?page=events_his" class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 <?php echo $page == 'events_his' ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
-                        📜 Events History
+                <?php $page = isset($_POST['page']) ? $_POST['page']  : 'profile_info'; ?>
+                <form action="" method="post" class="flex flex-col flex-1">
 
+                    <button type="submit" name="subHis"
+                        class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
+                    <?php echo isset($_POST['subHis']) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
+                        📜 Events History
                     </button>
-                    <button type="submit" name="subEvent" href="?page=my_events" class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 <?php echo $page == 'my_events' ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
+
+                    <button type="submit" name="subEvent"
+                        class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
+                    <?php echo isset($_POST['subEvent']) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
                         📅 My Events
                     </button>
-                    <button type="submit" name="subProfile" href="?page=profile_info" class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 <?php echo $page == 'profile_info' ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
+
+                    <button type="submit" name="subProfile"
+                        class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
+                    <?php echo (isset($_POST['subProfile']) || empty($_POST)) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
                         👤 Profile Info
                     </button>
-                    <button type="submit" name="subChart" href="?page=chart" class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 <?php echo $page == 'chart' ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
+
+                    <button type="submit" name="subChart"
+                        class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
+                    <?php echo isset($_POST['subChart']) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
                         📊 Chart
                     </button>
+
                 </form>
             </div>
 
@@ -43,18 +55,19 @@
         <div class="flex-1 flex flex-col justify-start items-center p-8 overflow-y-auto">
             <div class="w-full max-w-4xl flex flex-col justify-start items-center ">
                 <?php
-                if (isset($_GET['subHis'])) {
-                    include 'events-history.php';
-                } else if (isset($_GET['subEvent'])) {
-                    include 'my-events.php';
-                } else if (isset($_GET['subProfile'])) {
-                    include 'profile-info.php';
-                } else if (isset($_GET['subChart'])) {
-                    include 'chart.html';
+                if (isset($_POST['subHis'])) {
+                    include __DIR__ . '/events-history.php';
+                } else if (isset($_POST['subEvent'])) {
+                    include __DIR__ . '/my-events.php';
+                } else if (isset($_POST['subProfile'])) {
+                    include __DIR__ . '/profile-info.php';
+                } else if (isset($_POST['subChart'])) {
+                    include __DIR__ . '/chart.html';
+                } else {
+                    include __DIR__ . '/profile-info.php';
                 }
                 ?>
             </div>
         </div>
 </body>
-
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['email']) ?? '';
+    $username = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
     if (checkLogin($username, $password)) {

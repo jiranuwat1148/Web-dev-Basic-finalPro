@@ -1,4 +1,6 @@
 <?php
+
+
 function insertUsers($user): bool
 {
     global $conn;
@@ -26,4 +28,15 @@ function checkLogin(string $email, string $password): bool
         return password_verify($password, $row['password']);
     }
     return false;
+}
+
+function getUsersByEmail(string $email): ?array
+{
+    global $conn;
+    $sql = 'select * from users where email = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc(); 
 }

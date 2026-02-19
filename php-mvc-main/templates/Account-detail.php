@@ -1,3 +1,14 @@
+<?php
+
+if (!isset($_SESSION['email'])) {
+    die("กรุณา login ก่อน");
+}
+
+$email = $_SESSION['email'];
+
+$result = getUsersByEmail($email);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +28,7 @@
             <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUOmilg14nh-ZJQzEnTBXjSMX_6fQf0gVxZg&s" alt="Profile_Me" class="w-full h-full object-cover">
             </div>
-            <h2 class="mt-4 text-2xl font-bold text-gray-800">User Name</h2>
-            <p class="text-gray-500 text-sm">Member since 2024</p>
+            <h2 class="mt-4 text-2xl font-bold text-gray-800"><?= $result['NAME'] ?></h2>
 
             <div class="mt-8 w-full px-6 space-y-2">
                 <?php $page = isset($_POST['page']) ? $_POST['page']  : 'profile_info'; ?>
@@ -63,6 +73,8 @@
                     include __DIR__ . '/profile-info.php';
                 } else if (isset($_POST['subChart'])) {
                     include __DIR__ . '/chart.html';
+                }else if (isset($_POST['Edit'])) {
+                    include __DIR__ . '/profile-edit.php';
                 } else {
                     include __DIR__ . '/profile-info.php';
                 }

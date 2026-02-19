@@ -1,6 +1,4 @@
-<?php 
-$_SESSION['users_login'] ??= '';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 

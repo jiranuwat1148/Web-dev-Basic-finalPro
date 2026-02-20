@@ -15,6 +15,23 @@ function insertUsers($user): bool
     }
 }
 
+function EditUsers($user)
+{
+    try{
+        global $conn;
+        $sql = 'update users SET name = ?,gender = ?,birthday = ? where user_id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sssi', $user['name'], $user['gender'], $user['birthday'],$user['id']);
+        print_r($stmt);
+        $stmt->execute();
+        $conn->commit();
+    }
+    catch (Exception $e) {
+        $conn->rollback(); // ❗ ล้มเหลว → rollback
+        echo "เกิดข้อผิดพลาด: " . $e->getMessage();
+    }
+}
+
 function checkLogin(string $email, string $password): bool
 {
     global $conn;

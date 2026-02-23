@@ -3,6 +3,8 @@
 $email = $_SESSION['email'];
 
 $result = getUsersByEmail($email);
+$my_events = getEventByUser($result['user_id']);
+$event_his = getRegisByUser($result['user_id']);
 
 ?>
 <!DOCTYPE html>
@@ -55,9 +57,12 @@ $result = getUsersByEmail($email);
                     </button>
 
                 </form>
-            </div>
-
+            </div>  
+            <form action="logout" method="post">
+            <button type="submit" onclick="return confirmLogout()" class="bg-red-600 text-center text-white p-2 rounded-lg hover:shadow-md transition">ออกจากระบบ</button>
+            </form>
         </div>
+        
         <div class="flex-1 flex flex-col justify-start items-center p-8 overflow-y-auto">
             <div class="w-full max-w-4xl flex flex-col justify-start items-center ">
                 <?php
@@ -77,5 +82,10 @@ $result = getUsersByEmail($email);
                 ?>
             </div>
         </div>
+        <script>
+        function confirmLogout() {
+            return confirm("ยืนยันการออกจากระบบ ?");
+        }
+    </script>
 </body>
 </html>

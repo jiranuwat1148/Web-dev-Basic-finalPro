@@ -7,28 +7,18 @@
 <div class="w-full flex flex-col gap-4">
     <h3 class="text-xl font-semibold text-gray-700 mb-2">My Events</h3>
     <!-- Event Item Example -->
+     <?php while ($row = $my_events->fetch_object()) {?>
     <div class="w-full bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md transition">
         <div class="flex items-center gap-4">
             <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 font-bold">
                 <img src="https://us-fbcloud.net/wb/data/1409/1409286-img.vjaxav.53qo7.jpg" alt="Profile_Me" class="w-full h-full object-cover rounded-lg">
             </div>
             <div>
-                <h4 class="font-bold text-gray-800">ลงขันซื้อเบ็ดตกปลาใหม่</h4>
+                <h4 class="font-bold text-gray-800"><?= $row->title ?></h4>
                 <p class="text-sm text-gray-500">สถานะ: กำลังดำเนินการ</p>
             </div>
         </div>
         <button class="text-blue-600 hover:underline">แก้ไขกิจกรรม</button>
     </div>
-    <div class="w-full bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md transition">
-        <div class="flex items-center gap-4">
-            <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 font-bold">
-                <img src="https://us-fbcloud.net/wb/data/1409/1409286-img.vjaxav.53qo7.jpg" alt="Profile_Me" class="w-full h-full object-cover rounded-lg">
-            </div>
-            <div>
-                <h4 class="font-bold text-gray-800">ลงขันซื้อเบ็ดตกปลาใหม่</h4>
-                <p class="text-sm text-gray-500">สถานะ: กำลังดำเนินการ</p>
-            </div>
-        </div>
-        <button class="text-blue-600 hover:underline">แก้ไขกิจกรรม</button>
-    </div>
+     <?php } ?>
 </div>

@@ -10,15 +10,18 @@
     <h3 class="text-xl font-semibold text-gray-700 mb-2">My Events</h3>
     <!-- Event Item Example -->
     <div class="w-full bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md transition">
+        <?php while ($row = $event_his->fetch_object()) {?>
         <div class="flex items-center gap-4">
             <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 font-bold">
-                DEC
+                E 
             </div>
             <div>
-                <h4 class="font-bold text-gray-800">ตกปลาล่าชะโด</h4>
-                <p class="text-sm text-gray-500">สถานะ: เข้าร่วมแล้ว</p>
+                <h4 class="font-bold text-gray-800"><?= $row->title ?></h4>
+                <p class="text-sm text-gray-500">สถานะ : <?= $row->STATUS ?></p>
+                <p class="text-sm text-gray-500">วันที่ <?= $date = (new DateTime($row->start_date))->format('d/m/Y'); ?> เวลา : <?= (new DateTime($row->start_date))->format('H:i'); ?> - <?= (new DateTime($row->end_date))->format('H:i'); ?></p>
             </div>
         </div>
         <button class="text-blue-600 hover:underline">ดูรายละเอียด</button>
     </div>
+    <?php } ?>
 </div>

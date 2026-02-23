@@ -41,13 +41,8 @@
                     Acctivity คือศูนย์รวมกิจกรรมสุดมันส์ ไม่ว่าจะเป็นกีฬา ดนตรี อาสาสมัคร หรือเวิร์คช็อป เปิดโลกใหม่ของคุณได้ที่นี่
                 </p>
                 <div class="mt-10 sm:flex sm:justify-center md:justify-start gap-4">
-                    <div class="rounded-md shadow">
-                        <a href="even_content.php" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition transform hover:scale-105">
-                            ดูกิจกรรมทั้งหมด
-                        </a>
-                    </div>
                     <div class="mt-3 sm:mt-0 sm:ml-3">
-                        <a href="createAcc.php" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10 transition">
+                        <a href="/createAcc" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10 transition">
                             สมัครสมาชิก
                         </a>
                     </div>

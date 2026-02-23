@@ -27,7 +27,7 @@ function EditUsers($user)
         $conn->commit();
     }
     catch (Exception $e) {
-        $conn->rollback(); // ❗ ล้มเหลว → rollback
+        $conn->rollback(); // rollback
         echo "เกิดข้อผิดพลาด: " . $e->getMessage();
     }
 }
@@ -56,4 +56,5 @@ function getUsersByEmail(string $email): ?array
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_assoc(); 
+
 }

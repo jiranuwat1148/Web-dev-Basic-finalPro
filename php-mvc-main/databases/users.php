@@ -56,5 +56,4 @@ function getUsersByEmail(string $email): ?array
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_assoc(); 
-
 }

@@ -5,11 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['email']) ?? '';
     $password = $_POST['password'] ?? '';
 
-    $_SESSION['email'] = $username;
-
     if (checkLogin($username, $password)) {
         $unix_timestamp = time();
         $_SESSION['timestamp'] = $unix_timestamp;
+        $_SESSION['email'] = $username;
         header('Location: /home');
         exit;
     } else {

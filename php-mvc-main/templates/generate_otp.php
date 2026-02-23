@@ -57,7 +57,7 @@
         }
     }
     ?>
-        <?php include 'navbar.html' ?>
+        <?php include 'navbar.php' ?>
 
     <div class="flex-1 flex flex-col items-center justify-center p-4 mt-8">
         <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">

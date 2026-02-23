@@ -10,7 +10,7 @@
 </head>
 
 <body class="w-full h-screen flex flex-col overflow-hidden m-0 overflow-y-auto">
-  <?php include 'navbar.html' ?>
+<?php include 'navbar.php' ?>
   <div class="w-full xl:w-[full] flex-1 flex flex-col md:flex md:justify-center md:items-center">
     <div class="w-full h-[5%] md:w-[1/2] flex justify-center items-center">
     </div>

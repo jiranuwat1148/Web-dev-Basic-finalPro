@@ -58,7 +58,7 @@
             }
         }
     ?>
-    <?php include 'navbar.html' ?>
+    <?php include 'navbar.php' ?>
 
     <div class="flex-1 flex flex-col items-center justify-center p-4 mt-16">
         

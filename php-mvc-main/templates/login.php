@@ -11,7 +11,7 @@
 
 <body class="h-screen w-screen bg-gray-100 ">
   <div class="flex flex-col h-full w-full">
-    <?php include 'navbar.html' ?>
+    <?php include 'navbar.php' ?>
     <div class="flex flex-col items-center justify-center h-full w-full">
       <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6 h-[70%] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
         <h2 class="text-6xl font-bold text-gray-900 mb-4 text-center mt-8">เข้าสู่ระบบ</h2>

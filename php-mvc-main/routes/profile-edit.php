@@ -8,7 +8,7 @@ if (isset($_POST['re'])) {
             'id' => $result['user_id'],
             'name' => !empty(trim($_POST['name']))
                 ? trim($_POST['name'])
-                : $result['name'],
+                : $result['NAME'],
             'gender' => !empty($_POST['gender'])
                 ? $_POST['gender']
                 : $result['gender'],

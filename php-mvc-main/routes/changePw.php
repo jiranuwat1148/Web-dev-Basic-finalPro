@@ -1,6 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $password = $_POST['password'] ?? '';
+    $old_password = $_POST['oldPw'] ?? '';
+    $password = $_POST['NewPw'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
 
     if ($password !== $confirm_password) {

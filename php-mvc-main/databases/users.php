@@ -22,7 +22,6 @@ function EditUsers($user)
         $sql = 'update users SET name = ?,gender = ?,birthday = ? where user_id = ?';
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('sssi', $user['name'], $user['gender'], $user['birthday'],$user['id']);
-        print_r($stmt);
         $stmt->execute();
         $conn->commit();
     }
@@ -66,4 +65,15 @@ function updateUserPassword(int $id, string $hashed_password): bool
     $stmt->bind_param('si', $hashed_password, $id);
     $stmt->execute();
     return  $stmt->affected_rows > 0;
+}
+
+function checkEmail(string $email): bool
+{
+    global $conn;
+    $sql = 'SELECT email FROM users WHERE email = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->num_rows > 0;
 }

@@ -58,6 +58,7 @@ $event_his = getRegisByUser($result['user_id']);
 
                 </form>
             </div>  
+            <a href="/changePw" class="bg-yellow-400 text-center text-white p-2 rounded-lg m-4 hover:shadow-md transition">เปลี่ยนรหัสผ่าน</a>
             <form action="logout" method="post">
             <button type="submit" onclick="return confirmLogout()" class="bg-red-600 text-center text-white p-2 rounded-lg hover:shadow-md transition">ออกจากระบบ</button>
             </form>

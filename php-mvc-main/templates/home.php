@@ -21,7 +21,7 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Navbar -->
-    <?php include 'navbar.html'; ?>
+    <?php include 'navbar.php'; ?>
 
     <!-- ================= Hero Section (Banner) ================= -->
     <div class="relative bg-gray-900 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">

@@ -1,9 +1,5 @@
 <?php
 
-if (!isset($_SESSION['email'])) {
-    die("กรุณา login ก่อน");
-}
-
 $email = $_SESSION['email'];
 
 $result = getUsersByEmail($email);
@@ -20,7 +16,7 @@ $result = getUsersByEmail($email);
 </head>
 
 <body class="h-screen w-screen flex flex-col bg-gray-100">
-    <?php include 'navbar.html' ?>
+    <?php include 'navbar.php' ?>
 
     <div class="flex flex-1 w-full h-full overflow-hidden mt-16">
         <!-- Sidebar / Profile Image -->

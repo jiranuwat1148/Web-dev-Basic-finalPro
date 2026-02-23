@@ -57,3 +57,13 @@ function getUsersByEmail(string $email): ?array
     $result = $stmt->get_result();
     return $result->fetch_assoc(); 
 }
+
+function updateUserPassword(int $id, string $hashed_password): bool
+{
+    global $conn;
+    $sql = 'update Users set password = ? where user_id = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('si', $hashed_password, $id);
+    $stmt->execute();
+    return  $stmt->affected_rows > 0;
+}

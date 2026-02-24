@@ -21,7 +21,7 @@
         <a href="/generate_otp">generate_otp</a>
       </div>
       <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
-        <a href="/checkin-even">checkin-even</a>
+        <a href="/checkin-even">checkin-event</a>
       </div>
     </div>
     <?php }else {?>
@@ -42,7 +42,7 @@
         <a href="/generate_otp">generate_otp</a>
       </div>
       <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
-        <a href="/checkin-even">checkin-even</a>
+        <a href="/checkin-even">checkin-event</a>
       </div>
     </div>
     <?php }?>

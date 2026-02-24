@@ -24,7 +24,7 @@ $event_his = getRegisByUser($result['user_id']);
         <!-- Sidebar / Profile Image -->
         <div class="w-1/4 h-full bg-white border-r border-gray-200 flex flex-col items-center pt-12 shadow-sm">
             <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUOmilg14nh-ZJQzEnTBXjSMX_6fQf0gVxZg&s" alt="Profile_Me" class="w-full h-full object-cover">
+                <img src="https://icons.veryicon.com/png/o/miscellaneous/commonly-used-icon-1/personal-25.png" alt="Profile_Me" class="w-full h-full object-cover">
             </div>
             <h2 class="mt-4 text-2xl font-bold text-gray-800"><?= $result['NAME'] ?></h2>
 

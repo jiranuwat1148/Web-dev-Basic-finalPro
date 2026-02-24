@@ -11,7 +11,7 @@ function getEventByUser(string $id): mysqli_result|bool
 
 }
 
---------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------
 
 function insertEvent(array $data): int
 {
@@ -59,5 +59,6 @@ function insertEventImages(int $eventId, array $files): void
         $stmt->execute();
     }
 }
+
 
 

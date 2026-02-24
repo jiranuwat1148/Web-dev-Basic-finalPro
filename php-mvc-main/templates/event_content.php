@@ -15,18 +15,25 @@
     <?php include 'navbar.php' ?>
     <div class="w-full h-full flex justify-center items-center rounded-lg overflow-hidden overflow-y-auto">
         <div class="w-1/2 h-[80%]  rounede-lg overflow-hidden overflow-y-auto no-scrollbar">
-            <div class="w-full h-16 flex justify-between items-center bg-white px-4">
-                <div class="w-1/2 h-full text-6xl flex justify-start items-center">
+            <div class="w-full flex flex-col bg-white px-4 py-4 gap-4">
+                <div class="w-full text-6xl font-bold">
                     Events
                 </div>
-                <div class="w-1/2 h-full text-4xl flex justify-end items-center">
-                    <form action="#" method="get" class="text-xl w-full h-full flex justify-center items-center gap-4">
-                        <input type="text" class="w-[70%] h-[60%] border-2 border-black rounded-lg px-2">
-                        <button type="submit" class="text-3xl hover:cursor-pointer hover:bg-blue-100 hover:rounded-lg px-2">Search</button>
-                    </form>
 
+                <div class="w-full flex justify-between items-center">
+                    <div class="text-xl px-6 rounded-lg bg-gray-500 h-12 flex justify-center items-center text-white cursor-pointer hover:bg-gray-600 transition">
+                        <a href="/create_content">Create Content</a>
+                    </div>
+
+                    <div class="w-1/2">
+                        <form action="#" method="get" class="flex justify-end items-center gap-2">
+                            <input type="text" class="w-full max-w-xs h-10 border-2 border-black rounded-lg px-2" placeholder="Search...">
+                            <button type="submit" class="text-xl font-semibold hover:bg-blue-100 hover:rounded-lg px-4 py-1 transition">
+                                Search
+                            </button>
+                        </form>
+                    </div>
                 </div>
-
             </div>
             <div class="w-full flex-1 px-4 py-4 overflow-y-auto space-y-4 no-scrollbar">
                 
@@ -157,4 +164,5 @@
                 element.classList.add('grid-rows-[0fr]');
             }
         }
+
     </script>

@@ -2,20 +2,7 @@
     <h3 class="text-xl font-semibold text-gray-700 mb-2">Edit Profile</h3>
     <!-- Event Item Example -->
     <form method="post" action="profile-edit">
-        <div class="w-full bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-start items-center hover:shadow-md transition mb-1">
-            <div class="flex items-center gap-4 w-1/2">
-                <div>
-                    <h4 class="font-bold text-gray-800">รูปโปรไฟล์</h4>
-                    <p class="text-sm text-gray-500"></p>
-                </div>
-            </div>
-            <div class="flex items-center justify-end  w-1/2 flex-row px-4 gap-2">
-                <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 font-bold">
-                    <img src="https://us-fbcloud.net/wb/data/1409/1409286-img.vjaxav.53qo7.jpg" alt="Profile_Me" class="w-full h-full object-cover rounded-lg">
-                </div>
-            </div>
-        </div>
-
+        
         <div class="w-full bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-start items-center hover:shadow-md transition mb-1">
             <div class="flex items-center gap-4 w-1/2">
                 <div class="flex flex-row gap-22">

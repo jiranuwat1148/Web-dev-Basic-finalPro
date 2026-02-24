@@ -109,7 +109,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">อายุการใช้งาน</label>
                         <div class="grid grid-cols-3 gap-2">
-                            <?php foreach ([1, 3, 5] as $min): ?>
+                            <?php foreach ([5, 15, 30] as $min): ?>
                             <label class="cursor-pointer">
                                 <input type="radio" name="duration" value="<?php echo $min; ?>" class="peer sr-only" <?php echo ($min == 15) ? 'checked' : ''; ?>>
                                 <div class="peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 border border-gray-200 rounded-lg py-2 text-center text-gray-600 hover:bg-gray-50 transition">
@@ -132,5 +132,4 @@
     </div>
     <script> lucide.createIcons(); </script>
 </body>
-
 </html>

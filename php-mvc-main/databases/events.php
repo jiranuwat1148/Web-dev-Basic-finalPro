@@ -60,21 +60,4 @@ function insertEventImages(int $eventId, array $files): void
     }
 }
 
-function getAllEvents(): array
-{
-    $conn = getConnection();
-    // ดึงข้อมูลกิจกรรม พร้อมดึงชื่อไฟล์รูปภาพแรกจากตาราง event_images ออกมาเป็นคอลัมน์ image_path
-    $sql = "SELECT e.*, 
-            (SELECT image_path FROM event_images WHERE event_id = e.event_id LIMIT 1) as image_path 
-            FROM events e 
-            ORDER BY e.create_at DESC"; // เรียงตามวันที่สร้างล่าสุด
-            
-    $result = $conn->query($sql);
-    $events = [];
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $events[] = $row;
-        }
-    }
-    return $events;
-}
+

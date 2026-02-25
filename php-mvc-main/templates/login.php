@@ -16,9 +16,9 @@
       <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6 h-[70%] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
         <h2 class="text-6xl font-bold text-gray-900 mb-4 text-center mt-8">เข้าสู่ระบบ</h2>
         <form action="login" method="post" class="flex flex-col gap-8 mt-20">
-          <input name="email" type="email" class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          <input name="email" type="email" require class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
             placeholder="ชื่อผู้ใช้งานหรืออีเมล">
-          <input name="password" type="password" class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          <input name="password" type="password" require class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
             placeholder="ใส่รหัสผ่าน">
           <?php if (!empty($data['error'])): ?>
             <p class="text-red-500"><?= $data['error'] ?></p>

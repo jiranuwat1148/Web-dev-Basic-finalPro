@@ -17,17 +17,17 @@
                 <form action="changePw" method="post" class="flex flex-col gap-8 mt-5">
                     <div>
                         <p>รหัสผ่านเก่า</p>
-                        <input name="oldPw" type="password" class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                        <input name="oldPw" type="password" require class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                             placeholder="รหัสผ่านเก่า">
                     </div>
                     <div>
                         <p>รหัสผ่านใหม่</p>
-                        <input name="NewPw" type="password" class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                        <input name="NewPw" type="password" require class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                             placeholder="รหัสผ่านใหม่">
                     </div>
                     <div>
                         <p>ยืนยันรหัสผ่านใหม่</p>
-                        <input name="ConfirmNewPw" type="password" class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                        <input name="ConfirmNewPw" type="password" require class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                             placeholder="ยืนยันรหัสผ่านใหม่">
                         <?php if (!empty($data['message'])): ?>
                             <p class="text-red-500"><?= $data['message'] ?></p>

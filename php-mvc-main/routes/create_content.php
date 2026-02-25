@@ -1,12 +1,10 @@
 <?php
-require_once '../includes/view.php';
-require_once '../includes/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     renderView('create_content');
     return;
 }
-
+$user = getUsersByEmail($_SESSION['email']);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // เตรียมข้อมูลให้ครบทุกคอลัมน์ที่ฐานข้อมูลต้องการ
     $data = [
@@ -19,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'end_time'    => $_POST['end_time'],
         'location'    => $_POST['location'] ?? 'N/A',
         'max_user'    => (int)($_POST['max_user'] ?? 50),
-        'create_by'   => $_SESSION['user_id'] ?? 1 // ใช้ ID จาก Session หรือ default เป็น 1
+        'create_by'   => $user['user_id'] ?? 1 // ใช้ ID จาก Session หรือ default เป็น 1 note:แก้
     ];
 
     $eventId = insertEvent($data);

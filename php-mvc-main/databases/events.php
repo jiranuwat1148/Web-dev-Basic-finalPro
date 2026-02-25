@@ -60,5 +60,18 @@ function insertEventImages(int $eventId, array $files): void
     }
 }
 
+function getAllEvents(): array
+{
+    $conn = getConnection();
+    // ถ้าเก็บอีเมลใน create_by อยู่แล้ว ก็ดึงตรงๆ ได้เลยไม่ต้อง JOIN ให้วุ่นวาย
+    $sql = "SELECT * FROM events ORDER BY event_id DESC";
+    $result = $conn->query($sql);
+    
+    $events = [];
+    while ($row = $result->fetch_assoc()) {
+        $events[] = $row;
+    }
+    return $events;
+}
 
 

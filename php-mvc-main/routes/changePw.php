@@ -9,6 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             renderView('changePw', ['message' => 'รหัสผ่านใหม่ไม่ตรงกัน']);
             exit;
         }
+        if (password_verify($password,$user['PASSWORD'])) {
+            renderView('changePw', ['message' => 'รหัสผ่านนี้ยังถูกใช้งานอยู่']);
+            exit;
+        }
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $res = updateUserPassword($user['user_id'], $hashed_password);

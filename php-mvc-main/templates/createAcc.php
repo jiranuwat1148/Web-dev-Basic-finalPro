@@ -22,13 +22,13 @@
     <div class="w-full h-[60%] flex flex-col justify-start items-start py-4 px-4 md:w-1/2">
       <form class="text-2xl w-full flex flex-col" action="createAcc" method="post">
         <label class="mt-4" for="Uname">Name</label>
-        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="ใส่ชื่อที่นี่" type="text" id="Uname" name="Uname" require>
+        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="ใส่ชื่อที่นี่" type="text" id="Uname" name="Uname" required>
         <label class="mt-4" for="Uname">Email</label>
-        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="ใส่อีเมลที่นี่" type="text" id="email" name="email" require>
+        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="ใส่อีเมลที่นี่" type="text" id="email" name="email" required>
         <label class="mt-4" for="Uname">Password</label>
-        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="สร้างรหัสผ่าน" type="password" id="password" name="password" require >
+        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="สร้างรหัสผ่าน" type="password" id="password" name="password" required >
         <label class="mt-4" for="Uname">Confirm Password</label>
-        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="ใส่รหัสผ่านอีกครั้ง" type="password" id="Cpassword" name="Cpassword" require>      
+        <input class="hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)] border-1 shadow-xl border-gray-200 h-12 items-center px-4 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" placeholder="ใส่รหัสผ่านอีกครั้ง" type="password" id="Cpassword" name="Cpassword" required>      
         <?php if (!empty($data['error'])): ?>
           <p class="text-red-500"><?= $data['error'] ?></p>
         <?php endif; ?>

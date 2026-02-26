@@ -60,9 +60,9 @@
                                     </button>
                                 </div>
                             </div>
-                            <div id="db-<?php echo $event['event_id']; ?>" class="grid grid-rows-[0fr] transition-all duration-500 ease-in-out">
+                            <div id="db-<?php echo $event['event_id']; ?>" class="grid grid-rows-[0fr] transition-all duration-500 ease-in-out ">
                                 <div class="overflow-hidden p-4 bg-gray-50 mt-2 rounded">
-                                    <p class="mt-2 text-gray-700"><?php echo nl2br(htmlspecialchars($event['description'])); ?></p>
+                                    <p class="mt-10 text-gray-700"><?php echo nl2br(htmlspecialchars($event['description'])); ?></p>
                                     <div class="mt-2 space-y-1 text-sm text-gray-600">
                                                     <div class="flex items-center gap-2">
                                                         <span class="font-semibold text-blue-600">📅 เริ่มต้น:</span>
@@ -84,37 +84,39 @@
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
+
 <style>
     .no-scrollbar::-webkit-scrollbar {
         display: none;
     }
+
     .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
     }
 </style>
 
- <script>
-        function toggleDetail(id) {
-            const element = document.getElementById(id);
-            
-            // เช็คว่าเปิดอยู่ไหม
-            if (element.classList.contains('grid-rows-[0fr]')) {
-                // ถ้าปิดอยู่ -> เปิด (1fr)
-                element.classList.remove('grid-rows-[0fr]');
-                element.classList.add('grid-rows-[1fr]');
-            } else {
-                // ถ้าเปิดอยู่ -> ปิด (0fr)
-                element.classList.remove('grid-rows-[1fr]');
-                element.classList.add('grid-rows-[0fr]');
-            }
+<script>
+    function toggleDetail(id) {
+        const element = document.getElementById(id);
+
+        // เช็คว่าเปิดอยู่ไหม
+        if (element.classList.contains('grid-rows-[0fr]')) {
+            // ถ้าปิดอยู่ -> เปิด (1fr)
+            element.classList.remove('grid-rows-[0fr]');
+            element.classList.add('grid-rows-[1fr]');
+        } else {
+            // ถ้าเปิดอยู่ -> ปิด (0fr)
+            element.classList.remove('grid-rows-[1fr]');
+            element.classList.add('grid-rows-[0fr]');
         }
-
-    </script>
-
+    }
+</script>

@@ -11,7 +11,7 @@ function getEventByUser(string $id): mysqli_result|bool
 
 }
 
-#--------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------
 
 function insertEvent(array $data): int
 {
@@ -59,7 +59,7 @@ function insertEventImages(int $eventId, array $files): void
         $stmt->execute();
     }
 }
-
+// ไฟล์ events.php
 function getAllEvents(): array
 {
     $conn = getConnection();
@@ -73,7 +73,6 @@ function getAllEvents(): array
     }
     return $events;
 }
-
 // ฟังก์ชันดึงข้อมูลกิจกรรมรายตัวเพื่อนำไปแก้ไข
 function getEventById(int $id): array|null {
     $conn = getConnection();
@@ -148,4 +147,3 @@ function updateEvent(int $eventId, array $data, int $userId): bool {
 
     return $stmt->execute();
 }
-

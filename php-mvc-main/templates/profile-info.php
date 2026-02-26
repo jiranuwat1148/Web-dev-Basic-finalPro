@@ -7,7 +7,7 @@
         <div class="flex items-center gap-4 w-1/2">
             <div class="flex flex-row">
                 <h4 class="font-bold text-gray-800">ชื่อ</h4>
-                <p class=" text-gray-500 mx-4 text-md"><?= $result['NAME'] ?></p>
+                <p class=" text-gray-500 mx-4 text-md"><?= $result['name'] ?></p>
             </div>
         </div>
         

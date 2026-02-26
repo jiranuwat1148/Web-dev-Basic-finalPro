@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart.js with Tailwind</title>
-    <!-- 1. เรียกใช้ Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -28,7 +27,6 @@
             </div>
         </div>
 
-        <!-- กราฟที่ 2: กราฟโดนัท (Doughnut Chart) -->
         <div class="bg-white p-6 rounded-xl shadow-lg">
             <h2 class="text-xl font-bold text-gray-700 mb-4">ประเภทกิจกรรมที่สนใจ</h2>
             <!-- พื้นที่วาดกราฟ -->
@@ -38,14 +36,11 @@
         </div>
 
     </div>
-
-    <!-- 3. ส่วน JavaScript สำหรับสร้างกราฟ -->
     <script>
-        // --- กราฟที่ 1: Bar Chart ---
         const ctxBar = document.getElementById('barChart');
 
         new Chart(ctxBar, {
-            type: 'bar', // ประเภทกราฟ: bar, line, pie, doughnut
+            type: 'bar',
             data: {
                 labels: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.'], // แกน X
                 datasets: [{
@@ -71,8 +66,6 @@
                 }
             }
         });
-
-        // --- กราฟที่ 2: Doughnut Chart ---
         const ctxDoughnut = document.getElementById('doughnutChart');
 
         new Chart(ctxDoughnut, {
@@ -97,6 +90,5 @@
             }
         });
     </script>
-
 </body>
 </html>

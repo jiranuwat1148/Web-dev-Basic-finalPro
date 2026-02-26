@@ -9,7 +9,7 @@
     <title>content</title>
 </head>
 
-<body class="    h-screen w-screen">
+<body class="h-screen w-screen">
 
     <?php include 'navbar.php' ?>
     <div class="w-full h-full flex justify-center items-center rounded-lg overflow-hidden overflow-y-auto">
@@ -117,4 +117,3 @@
         }
 
     </script>
-

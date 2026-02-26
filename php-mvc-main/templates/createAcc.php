@@ -33,7 +33,6 @@
           <p class="text-red-500"><?= $data['error'] ?></p>
         <?php endif; ?>
         <div class="w-full h-24 mt-4 flex justify-start items-start flex-col">
-        <label for="confirmCookie">ยอมรับข้อตกลงการใช้งาน <a class="text-lg text-blue-500 hover:underline "  href="termservice.html" target="_blank" rel="noopener noreferrer">อ่านข้อตกลง<input class="w-4 h-4 mt-3 mx-4 hover:shadow-[0_0_20px_rgba(0,0,0,0.5)]" type="checkbox" name="confirmCookie" id="confirmCookie"></a></label>
         <div class="w-full h-full flex flex-col justify-start items-center">
             <button class="mt-4 w-full h-12 border-1 bg-gray-300 rounded-lg hover:shadow-[0_0_20px_rgba(100,100,100,0.5)]" type="submit">ยืนยันการลงทะเบียน</button>
         </div>

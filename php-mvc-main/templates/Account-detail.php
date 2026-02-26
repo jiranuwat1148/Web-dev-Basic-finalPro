@@ -26,7 +26,7 @@ $event_his = getRegisByUser($result['user_id']);
             <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
                 <img src="https://icons.veryicon.com/png/o/miscellaneous/commonly-used-icon-1/personal-25.png" alt="Profile_Me" class="w-full h-full object-cover">
             </div>
-            <h2 class="mt-4 text-2xl font-bold text-gray-800"><?= $result['NAME'] ?></h2>
+            <h2 class="mt-4 text-2xl font-bold text-gray-800"><?= $result['name'] ?></h2>
 
             <div class="mt-8 w-full px-6 space-y-2">
                 <?php $page = isset($_POST['page']) ? $_POST['page']  : 'profile_info'; ?>

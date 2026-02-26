@@ -7,7 +7,7 @@
             <div class="flex items-center gap-4 w-1/2">
                 <div class="flex flex-row gap-22">
                     <h4 class="font-bold text-gray-800">ชื่อ</h4>
-                    <input class="border rounded" name="name" type="text" placeholder="<?= $result['NAME'] ?>">
+                    <input class="border rounded" name="name" type="text" placeholder="<?= $result['name'] ?>">
                 </div>
             </div>
 

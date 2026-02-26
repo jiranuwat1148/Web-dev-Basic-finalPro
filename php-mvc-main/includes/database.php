@@ -20,3 +20,4 @@ function getConnection(): mysqli
 require_once DATABASES_DIR . '/users.php';
 require_once DATABASES_DIR . '/events.php';
 require_once DATABASES_DIR . '/registrations.php';
+require_once DATABASES_DIR . '/otp.php';

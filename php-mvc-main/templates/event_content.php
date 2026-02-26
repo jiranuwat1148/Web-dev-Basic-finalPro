@@ -1,4 +1,6 @@
+<?php
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +12,6 @@
 </head>
 
 <body class="    h-screen w-screen">
-
     <?php include 'navbar.php' ?>
     <div class="w-full h-full flex justify-center items-center rounded-lg overflow-hidden overflow-y-auto">
         <div class="w-1/2 h-[80%]  rounede-lg overflow-hidden overflow-y-auto no-scrollbar">
@@ -24,105 +25,25 @@
                         <a href="/create_content">Create Content</a>
                     </div>
 
-                    <div class="w-[80%]">
-                        <form action="/event_content" method="POST" class="flex flex-wrap justify-end items-end gap-2">
-
-                            <div class="flex flex-col">
-                                <label class="text-xs text-gray-500">ชื่อกิจกรรม</label>
-                                <input type="text" name="search"
-                                    value="<?php echo htmlspecialchars($data['old_search'] ?? ''); ?>"
-                                    class="h-10 border-2 border-black rounded-lg px-2" placeholder="Search...">
-                            </div>
-
-                            <div class="flex flex-col">
-                                <label class="text-xs text-gray-500">จากวันที่</label>
-                                <input type="date" name="start_date"
-                                    value="<?php echo htmlspecialchars($data['old_start'] ?? ''); ?>"
-                                    class="h-10 border-2 border-black rounded-lg px-2">
-                            </div>
-
-                            <div class="flex flex-col">
-                                <label class="text-xs text-gray-500">ถึงวันที่</label>
-                                <input type="date" name="end_date"
-                                    value="<?php echo htmlspecialchars($data['old_end'] ?? ''); ?>"
-                                    class="h-10 border-2 border-black rounded-lg px-2">
-                            </div>
-
-                            <button type="submit" class="bg-blue-500 text-white h-10 px-6 rounded-lg font-semibold hover:bg-blue-600 transition">
+                    <div class="w-1/2">
+                        <form action="#" method="get" class="flex justify-end items-center gap-2">
+                            <input type="text" class="w-full max-w-xs h-10 border-2 border-black rounded-lg px-2" placeholder="Search...">
+                            <button type="submit" class="text-xl font-semibold hover:bg-blue-100 hover:rounded-lg px-4 py-1 transition">
                                 Search
                             </button>
-
-                            <a href="/event_content" class="text-gray-500 text-sm mb-2 underline">ล้างค่า</a>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="w-full flex-1 px-4 py-4 overflow-y-auto space-y-4 no-scrollbar">
-
-                <?php if (!empty($data['events'])): ?>
-                    <?php foreach ($data['events'] as $event): ?>
-                        <div class="w-full rounded-lg px-4 py-4 flex flex-col shadow-lg bg-white border border-gray-100">
-                            <div class="flex justify-between items-center gap-4 h-32">
-                                <div class="w-32 h-32 overflow-hidden rounded-lg shrink-0 bg-gray-100 border flex justify-center items-center">
-                                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
-                                </div>
-
-                                <div class="flex-1 h-full p-3 overflow-hidden flex flex-col justify-between">
-                                    <div>
-                                        <h1 class="text-xl font-bold mb-1"><?php echo htmlspecialchars($event['title']); ?></h1>
-                                    </div>
-                                </div>
-
-                                <div class="w-32 h-full flex flex-col justify-center items-center gap-2 p-2 shrink-0">
-                                    <?php
-                                    $user = getUsersByEmail($_SESSION['email']);
-                                    if (!isJoined($user['user_id'], $event['event_id'])) { ?>
-                                        <form method="POST" action="join_event">
-                                            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white text-center px-10 py-1 rounded shadow transition" type="submit" name="event_id" value="<?= $event['event_id'] ?>"
-                                                onclick="return confirm('ยืนยันเข้าร่วมกิจกรรมนี้?')">
-                                                Join
-                                            </button>
-                                        </form>
-                                    <?php } else { ?>
-                                        <div class="py-2 textcolor">
-                                            ลงทะเบียนแล้ว
-                                        </div>
-                                    <?php } ?>
-                                    <button onclick="toggleDetail('db-<?php echo $event['event_id']; ?>')" class="w-full bg-white text-gray-800 py-1 rounded shadow border">
-                                        Viewport ▼
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="db-<?php echo $event['event_id']; ?>" class="grid grid-rows-[0fr] transition-all duration-500 ease-in-out">
-                                <div class="overflow-hidden p-4 bg-gray-50 mt-2 rounded">
-                                    <p class="mt-2 text-gray-700"><?php echo nl2br(htmlspecialchars($event['description'])); ?></p>
-                                    <div class="mt-2 space-y-1 text-sm text-gray-600">
-                                                    <div class="flex items-center gap-2">
-                                                        <span class="font-semibold text-blue-600">📅 เริ่มต้น:</span>
-                                                        <?php
-                                                        // แปลง datetime จากฐานข้อมูลให้เป็นรูปแบบที่อ่านง่าย
-                                                        echo date('d/m/Y H:i', strtotime($event['start_date']));
-                                                        ?> น.
-                                                    </div>
-                                                    <div class="flex items-center gap-2">
-                                                        <span class="font-semibold text-red-600">🏁 สิ้นสุด:</span>
-                                                        <?php
-                                                        echo date('d/m/Y H:i', strtotime($event['end_date']));
-                                                        ?> น.
-                                                    </div>
-                                                </div>
-                                    <p><strong>📍 สถานที่:</strong> <?php echo htmlspecialchars($event['location'] ?? 'ไม่ระบุ'); ?></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-                </div>
+                    <!-- content here-->
             </div>
         </div>
+    </div>
 </body>
 
 </html>
+
 <style>
     .no-scrollbar::-webkit-scrollbar {
         display: none;
@@ -150,5 +71,3 @@
         }
 
     </script>
-
-

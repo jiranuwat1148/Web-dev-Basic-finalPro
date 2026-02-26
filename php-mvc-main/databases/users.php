@@ -57,17 +57,6 @@ function getUsersByEmail(string $email): ?array
     return $result->fetch_assoc(); 
 }
 
-function getUsersById(string $Id): mysqli_result|bool
-{
-    global $conn;
-    $sql = 'select * from users where user_id = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $Id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result; 
-}
-
 function updateUserPassword(int $id, string $hashed_password): bool
 {
     global $conn;

@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     renderView('create_content');
     return;
 }
+
 $user = getUsersByEmail($_SESSION['email']);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // เตรียมข้อมูลให้ครบทุกคอลัมน์ที่ฐานข้อมูลต้องการ

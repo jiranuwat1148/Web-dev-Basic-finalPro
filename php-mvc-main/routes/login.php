@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $unix_timestamp = time();
         $_SESSION['timestamp'] = $unix_timestamp;
         $_SESSION['email'] = $username;
+        $_SESSION['user_id'] = $userId;
         header('Location: /home');
         exit;
     } else {

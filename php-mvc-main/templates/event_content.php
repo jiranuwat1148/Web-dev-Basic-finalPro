@@ -24,12 +24,35 @@
                         <a href="/create_content">Create Content</a>
                     </div>
 
-                    <div class="w-1/2">
-                        <form action="#" method="get" class="flex justify-end items-center gap-2">
-                            <input type="text" class="w-full max-w-xs h-10 border-2 border-black rounded-lg px-2" placeholder="Search...">
-                            <button type="submit" class="text-xl font-semibold hover:bg-blue-100 hover:rounded-lg px-4 py-1 transition">
+                    <div class="w-[80%]">
+                        <form action="/event_content" method="POST" class="flex flex-wrap justify-end items-end gap-2">
+
+                            <div class="flex flex-col">
+                                <label class="text-xs text-gray-500">ชื่อกิจกรรม</label>
+                                <input type="text" name="search"
+                                    value="<?php echo htmlspecialchars($data['old_search'] ?? ''); ?>"
+                                    class="h-10 border-2 border-black rounded-lg px-2" placeholder="Search...">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label class="text-xs text-gray-500">จากวันที่</label>
+                                <input type="date" name="start_date"
+                                    value="<?php echo htmlspecialchars($data['old_start'] ?? ''); ?>"
+                                    class="h-10 border-2 border-black rounded-lg px-2">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label class="text-xs text-gray-500">ถึงวันที่</label>
+                                <input type="date" name="end_date"
+                                    value="<?php echo htmlspecialchars($data['old_end'] ?? ''); ?>"
+                                    class="h-10 border-2 border-black rounded-lg px-2">
+                            </div>
+
+                            <button type="submit" class="bg-blue-500 text-white h-10 px-6 rounded-lg font-semibold hover:bg-blue-600 transition">
                                 Search
                             </button>
+
+                            <a href="/event_content" class="text-gray-500 text-sm mb-2 underline">ล้างค่า</a>
                         </form>
                     </div>
                 </div>
@@ -54,9 +77,8 @@
                                     <?php
                                     $user = getUsersByEmail($_SESSION['email']);
                                     if (!isJoined($user['user_id'], $event['event_id'])) { ?>
-                                        <form method="POST" action="join_event"
-                                            class="w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-1 rounded shadow transition">
-                                            <button type="submit" name="event_id" value="<?= $event['event_id'] ?>"
+                                        <form method="POST" action="join_event">
+                                            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white text-center px-10 py-1 rounded shadow transition" type="submit" name="event_id" value="<?= $event['event_id'] ?>"
                                                 onclick="return confirm('ยืนยันเข้าร่วมกิจกรรมนี้?')">
                                                 Join
                                             </button>

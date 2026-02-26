@@ -11,7 +11,7 @@ function getEventByUser(string $id): mysqli_result|bool
 
 }
 
-#--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 
 function insertEvent(array $data): int
 {
@@ -148,4 +148,5 @@ function updateEvent(int $eventId, array $data, int $userId): bool {
 
     return $stmt->execute();
 }
+
 

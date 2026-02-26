@@ -51,10 +51,21 @@
                                 </div>
 
                                 <div class="w-32 h-full flex flex-col justify-center items-center gap-2 p-2 shrink-0">
-                                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-1 rounded shadow transition"
-                                    onclick="return confirm('คุณต้องการเข้าร่วมกิจกรรมนี้ใช่หรือไม่?')">
-                                        Join
-                                    </button>
+                                    <?php
+                                    $user = getUsersByEmail($_SESSION['email']);
+                                    if (!isJoined($user['user_id'], $event['event_id'])) { ?>
+                                        <form method="POST" action="join_event"
+                                            class="w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-1 rounded shadow transition">
+                                            <button type="submit" name="event_id" value="<?= $event['event_id'] ?>"
+                                                onclick="return confirm('ยืนยันเข้าร่วมกิจกรรมนี้?')">
+                                                Join
+                                            </button>
+                                        </form>
+                                    <?php } else { ?>
+                                        <div class="py-2 textcolor">
+                                            ลงทะเบียนแล้ว
+                                        </div>
+                                    <?php } ?>
                                     <button onclick="toggleDetail('db-<?php echo $event['event_id']; ?>')" class="w-full bg-white text-gray-800 py-1 rounded shadow border">
                                         Viewport ▼
                                     </button>
@@ -117,4 +128,5 @@
         }
 
     </script>
+
 

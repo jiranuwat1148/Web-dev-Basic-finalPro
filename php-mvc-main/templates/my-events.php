@@ -22,7 +22,7 @@
                         <p class="text-sm text-gray-500">สถานที่: <?= htmlspecialchars($row->location) ?></p>
                     </div>
                 </div>
-                <form action="/view_registrations" method="POST">
+                <form action="/registration_event" method="POST">
                     <input type="hidden" name="event_id" value="<?= $row->event_id ?>">
                     <button type="submit" class="text-green-600 font-semibold hover:text-green-800 hover:underline cursor-pointer transition">
                         รายชื่อคนสมัคร
@@ -53,3 +53,4 @@
         </div>
     <?php endif; ?>
 </div>
+

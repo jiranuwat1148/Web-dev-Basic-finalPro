@@ -30,3 +30,27 @@ function updateRegis(int $id, string $status): bool
     $stmt->execute();
     return  $stmt->affected_rows > 0;
 }
+
+function joinEvent(string $user_id, int $event_id): bool
+{
+    global $conn;
+
+    $sql = "INSERT INTO registrations (user_id, event_id, status) VALUES (?, ?, 'pending')";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('si', $user_id, $event_id);
+
+    return $stmt->execute();
+}
+
+function isJoined(string $user_id, int $event_id): bool
+{
+    global $conn;
+
+    $sql = "SELECT * FROM registrations WHERE user_id = ? AND event_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('si', $user_id, $event_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    return $result->num_rows > 0;
+}

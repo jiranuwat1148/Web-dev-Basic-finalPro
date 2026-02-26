@@ -60,12 +60,52 @@ function insertEventImages(int $eventId, array $files): void
     }
 }
 
-function getAllEvents(): array
+function getAllEvents($search = '', $startDate = '', $endDate = ''): array
 {
     $conn = getConnection();
-    // ถ้าเก็บอีเมลใน create_by อยู่แล้ว ก็ดึงตรงๆ ได้เลยไม่ต้อง JOIN ให้วุ่นวาย
-    $sql = "SELECT * FROM events ORDER BY event_id DESC";
-    $result = $conn->query($sql);
+    $sql = "SELECT e.*, u.email as creator_email 
+            FROM events e 
+            LEFT JOIN users u ON e.create_by = u.user_id 
+            WHERE 1=1"; 
+
+    $params = [];
+    $types = "";
+
+    if (!empty($search)) {
+        $sql .= " AND e.title LIKE ?";
+        $params[] = "%$search%";
+        $types .= "s";
+    }
+
+    // กรณีที่ 1: กรอกทั้งวันเริ่มและวันจบ (ค้นหาในช่วง)
+    if (!empty($startDate) && !empty($endDate)) {
+        $sql .= " AND e.start_date <= ? AND e.end_date >= ?";
+        $params[] = $endDate . ' 23:59:59';
+        $params[] = $startDate . ' 00:00:00';
+        $types .= "ss";
+    } 
+    // กรณีที่ 2: กรอกแค่วันเริ่มวันเดียว (หางานที่เริ่มตั้งแต่วันนั้นเป็นต้นไป)
+    else if (!empty($startDate)) {
+        $sql .= " AND e.start_date >= ?";
+        $params[] = $startDate . ' 00:00:00';
+        $types .= "s";
+    }
+    // กรณีที่ 3: กรอกแค่วันจบวันเดียว (หางานที่มีก่อนหรือจบในวันนั้น)
+    else if (!empty($endDate)) {
+        $sql .= " AND e.end_date <= ?";
+        $params[] = $endDate . ' 23:59:59';
+        $types .= "s";
+    }
+
+    $sql .= " ORDER BY e.create_at DESC";
+    
+    $stmt = $conn->prepare($sql);
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
+    }
+    
+    $stmt->execute();
+    $result = $stmt->get_result();
     
     $events = [];
     while ($row = $result->fetch_assoc()) {
@@ -148,5 +188,6 @@ function updateEvent(int $eventId, array $data, int $userId): bool {
 
     return $stmt->execute();
 }
+
 
 

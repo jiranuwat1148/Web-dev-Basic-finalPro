@@ -74,4 +74,78 @@ function getAllEvents(): array
     return $events;
 }
 
+// ฟังก์ชันดึงข้อมูลกิจกรรมรายตัวเพื่อนำไปแก้ไข
+function getEventById(int $id): array|null {
+    $conn = getConnection();
+    $sql = "SELECT * FROM events WHERE event_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+// ฟังก์ชันลบกิจกรรม (ตรวจสอบว่าเป็นเจ้าของกิจกรรมจริง)
+// ไฟล์: databases/events.php
+function deleteEvent(int $eventId, int $userId): bool {
+    $conn = getConnection();
+    
+    // 1. ตรวจสอบสิทธิ์ก่อนว่าคนลบเป็นเจ้าของกิจกรรมจริงไหม
+    $sqlCheck = "SELECT event_id FROM events WHERE event_id = ? AND create_by = ?";
+    $stmtCheck = $conn->prepare($sqlCheck);
+    $stmtCheck->bind_param("ii", $eventId, $userId);
+    $stmtCheck->execute();
+    $resCheck = $stmtCheck->get_result();
+
+    if ($resCheck->num_rows === 0) {
+        return false; // ไม่ใช่เจ้าของกิจกรรม
+    }
+
+    // 2. ลบข้อมูลในตารางลูกที่อ้างอิงถึง event_id นี้ก่อน (ตามลำดับความสัมพันธ์)
+    // ลบรูปภาพ
+    $conn->query("DELETE FROM event_images WHERE event_id = $eventId");
+    // ลบรหัส OTP
+    $conn->query("DELETE FROM otps WHERE event_id = $eventId");
+    // ลบการลงทะเบียน (ระวัง: หากต้องการเก็บประวัติอาจใช้วิธีเปลี่ยน Status แทน)
+    $conn->query("DELETE FROM registrations WHERE event_id = $eventId");
+
+    // 3. เมื่อลบข้อมูลที่เกี่ยวข้องหมดแล้ว จึงจะลบกิจกรรมหลักได้
+    $sql = "DELETE FROM events WHERE event_id = ? AND create_by = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $eventId, $userId); 
+    
+    return $stmt->execute();
+}
+
+
+function updateEvent(int $eventId, array $data, int $userId): bool {
+    $conn = getConnection();
+    
+    // รวมวันและเวลาเข้าด้วยกัน
+    $start_datetime = $data['start_date'] . ' ' . $data['start_time'];
+    $end_datetime   = $data['end_date'] . ' ' . $data['end_time'];
+
+    $sql = "UPDATE events SET 
+            title = ?, 
+            description = ?, 
+            attribute = ?, 
+            location = ?, 
+            start_date = ?, 
+            end_date = ?, 
+            max_user = ? 
+            WHERE event_id = ? AND create_by = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssiii", 
+        $data['title'], 
+        $data['description'], 
+        $data['attribute'], 
+        $data['location'], 
+        $start_datetime, 
+        $end_datetime, 
+        $data['max_user'], 
+        $eventId, 
+        $userId
+    );
+
+    return $stmt->execute();
+}
 

@@ -11,11 +11,11 @@ CREATE TABLE users (
 );
 
 INSERT INTO users VALUES
-(1,'สมชาย ใจดี','somchai@mail.com','123456','male','2002-05-10'),
-(2,'สมหญิง แสนสวย','somying@mail.com','123456','female','2001-11-22'),
-(3,'อนันต์ เก่งมาก','anan@mail.com','123456','male','2000-03-15'),
-(4,'วิภา รุ่งเรือง','wipa@mail.com','123456','female','2003-07-09'),
-(5,'ปกรณ์ สายลุย','pakorn@mail.com','123456','male','1999-12-01');
+(1,'สมชาย ใจดี','somchai@mail.com','$2y$10$/1MWfJn4bcy1rMO12Ocym.9hizt4yY4vhHRaAHbCrFr.bLKgQP3Hu','male','2002-05-10'),
+(2,'สมหญิง แสนสวย','somying@mail.com','$2y$10$/1MWfJn4bcy1rMO12Ocym.9hizt4yY4vhHRaAHbCrFr.bLKgQP3Hu','female','2001-11-22'),
+(3,'อนันต์ เก่งมาก','anan@mail.com','$2y$10$/1MWfJn4bcy1rMO12Ocym.9hizt4yY4vhHRaAHbCrFr.bLKgQP3Hu','male','2000-03-15'),
+(4,'วิภา รุ่งเรือง','wipa@mail.com','$2y$10$/1MWfJn4bcy1rMO12Ocym.9hizt4yY4vhHRaAHbCrFr.bLKgQP3Hu','female','2003-07-09'),
+(5,'ปกรณ์ สายลุย','pakorn@mail.com','$2y$10$/1MWfJn4bcy1rMO12Ocym.9hizt4yY4vhHRaAHbCrFr.bLKgQP3Hu','male','1999-12-01');
 
 -- =======================
 -- EVENTS
@@ -113,3 +113,4 @@ INSERT INTO checkins VALUES
 (3,3,2,NOW()),
 (4,4,3,NOW()),
 (5,5,4,NOW());
+

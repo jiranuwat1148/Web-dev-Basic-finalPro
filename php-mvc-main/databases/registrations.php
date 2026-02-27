@@ -1,13 +1,28 @@
 <?php
-function getRegisByUser(string $id): mysqli_result|bool
+function getRegisByUser(string $id, string $search = ''): mysqli_result|bool
 {
     global $conn;
-    $sql = 'select * from registrations,events where registrations.event_id = events.event_id and user_id = ?';
+    // เชื่อมตาราง registrations และ events เข้าด้วยกัน
+    $sql = 'SELECT * FROM registrations, events 
+            WHERE registrations.event_id = events.event_id 
+            AND registrations.user_id = ?';
+    
+    // ถ้ามีการระบุคำค้นหา ให้เพิ่มเงื่อนไขชื่อกิจกรรมเข้าไป
+    if (!empty($search)) {
+        $sql .= " AND events.title LIKE ?";
+    }
+    
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $id);
+    
+    if (!empty($search)) {
+        $searchTerm = "%$search%";
+        $stmt->bind_param('ss', $id, $searchTerm);
+    } else {
+        $stmt->bind_param('s', $id);
+    }
+    
     $stmt->execute();
-    $result = $stmt->get_result();
-    return $result; 
+    return $stmt->get_result(); 
 }
 
 function getRegisByEvent(string $event,string $status): mysqli_result|bool
@@ -54,3 +69,4 @@ function isJoined(string $user_id, int $event_id): bool
     $result = $stmt->get_result();
     return $result->num_rows > 0;
 }
+

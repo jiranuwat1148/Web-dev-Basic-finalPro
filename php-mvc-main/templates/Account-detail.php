@@ -1,10 +1,13 @@
 <?php
 
 $email = $_SESSION['email'];
-
 $result = getUsersByEmail($email);
-$my_events = getEventByUser($result['user_id']);
-$event_his = getRegisByUser($result['user_id']);
+
+$searchMyEvent = $_POST['searchMyEvent'] ?? ''; 
+$my_events = getEventByUser($result['user_id'], $searchMyEvent);
+
+$searchHis = $_POST['searchHis'] ?? ''; 
+$event_his = getRegisByUser($result['user_id'], $searchHis); 
 
 ?>
 <!DOCTYPE html>
@@ -89,4 +92,5 @@ $event_his = getRegisByUser($result['user_id']);
         }
     </script>
 </body>
+
 </html>

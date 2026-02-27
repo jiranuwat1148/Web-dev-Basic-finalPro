@@ -201,7 +201,3 @@ function updateEvent(int $eventId, array $data, int $userId): bool {
 
     return $stmt->execute();
 }
-
-
-
-

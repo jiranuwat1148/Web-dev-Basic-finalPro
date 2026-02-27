@@ -69,4 +69,3 @@ function isJoined(string $user_id, int $event_id): bool
     $result = $stmt->get_result();
     return $result->num_rows > 0;
 }
-

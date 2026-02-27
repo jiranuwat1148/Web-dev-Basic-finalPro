@@ -4,12 +4,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['NewPw'] ?? '';
     $confirm_password = $_POST['ConfirmNewPw'] ?? '';
     $user = getUsersByEmail($_SESSION['email']);
-    if (password_verify($old_password,$user['PASSWORD'])) {
+    if (password_verify($old_password,$user['password'])) {
         if ($password !== $confirm_password) {
             renderView('changePw', ['message' => 'รหัสผ่านใหม่ไม่ตรงกัน']);
             exit;
         }
-        if (password_verify($password,$user['PASSWORD'])) {
+        if (password_verify($password,$user['password'])) {
             renderView('changePw', ['message' => 'รหัสผ่านนี้ยังถูกใช้งานอยู่']);
             exit;
         }

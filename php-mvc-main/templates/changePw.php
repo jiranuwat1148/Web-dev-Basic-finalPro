@@ -33,7 +33,7 @@
                             <p class="text-red-500"><?= $data['message'] ?></p>
                         <?php endif; ?>
                     </div>
-                    <button type="submit" class="text-2xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mb-2 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">เข้าสู่ระบบ</button>
+                    <button type="submit" class="text-2xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mb-2 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">เปลี่ยนรหัสผ่าน</button>
                 </form>
                 <div class="flex justify-center">
                     <a href="/Account-detail" class="bg-gray-400 text-center text-white p-2 rounded-lg hover:shadow-md transition">ย้อนกลับ</a>
@@ -42,5 +42,6 @@
         </div>
     </div>
 </body>
+
 
 </html>

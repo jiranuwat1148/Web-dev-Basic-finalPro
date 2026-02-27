@@ -1,14 +1,27 @@
 <?php
-function getEventByUser(string $id): mysqli_result|bool
+function getEventByUser(string $id, string $search = ''): mysqli_result|bool
 {
     global $conn;
-    $sql = 'select * from events where create_by = ?';
+    // SQL พื้นฐานสำหรับดึงกิจกรรมที่ผู้ใช้คนนี้เป็นคนสร้าง
+    $sql = 'SELECT * FROM events WHERE create_by = ?';
+    
+    // หากมีการระบุคำค้นหา ให้เพิ่มเงื่อนไข LIKE ชื่อกิจกรรม
+    if (!empty($search)) {
+        $sql .= " AND title LIKE ?";
+    }
+    
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $id);
+    
+    if (!empty($search)) {
+        $searchTerm = "%$search%";
+        $stmt->bind_param('ss', $id, $searchTerm);
+    } else {
+        $stmt->bind_param('s', $id);
+    }
+    
     $stmt->execute();
     $result = $stmt->get_result();
     return $result; 
-
 }
 
 //--------------------------------------------------------------------------------------------
@@ -188,6 +201,7 @@ function updateEvent(int $eventId, array $data, int $userId): bool {
 
     return $stmt->execute();
 }
+
 
 
 

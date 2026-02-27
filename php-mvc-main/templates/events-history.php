@@ -1,8 +1,15 @@
 <!-- Search Bar -->
 <div class="w-full h-12 flex justify-center items-center mb-8">
-    <form action="##" method="get" class="flex flex-1 overflow-hidden">
-        <input type="text" class="w-full h-full rounded-lg hover:bg-blue-100 bg-white border border-gray-200 shadow-sm px-4 py-2 focus:bg-blue-50 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ค้นหากิจกรรมของคุณ">
-        <button type="submit" class="h-full text-xl hover:cursor-pointer hover:bg-blue-600 bg-blue-500 text-white rounded-lg px-6 mx-2 py-1 items-center flex justify-center transition">Search</button>
+    <form action="" method="post" class="flex flex-1 overflow-hidden">
+        <input type="hidden" name="subHis" value="1">
+        <input type="text" name="searchHis"
+            value="<?= htmlspecialchars($_POST['searchHis'] ?? '') ?>"
+            class="w-full h-full rounded-lg hover:bg-blue-100 bg-white border border-gray-200 shadow-sm px-4 py-2 focus:bg-blue-50 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="พิมพ์ชื่อกิจกรรมเพื่อค้นหา...">
+
+        <button type="submit" class="h-full text-xl hover:cursor-pointer hover:bg-blue-600 bg-blue-500 text-white rounded-lg px-6 mx-2 py-1 items-center flex justify-center transition">
+            Search
+        </button>
     </form>
 </div>
 <!-- Content Area -->
@@ -25,3 +32,4 @@
     </div>
     <?php } ?>
 </div>
+

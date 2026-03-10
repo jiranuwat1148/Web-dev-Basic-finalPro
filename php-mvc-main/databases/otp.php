@@ -1,41 +1,52 @@
 <?php
-function getAllData(): array
-{
-    $conn = getConnection();
-    $sql = "SELECT * FROM events";
-    $result = $conn->query($sql);
-    $events = [];
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $events[] = $row;
-        }
-    }
-    return $events;
-}
-function generateOTP($userId, $eventId) {
-    $conn = getConnection();
-    $otpCode = rand(100000, 999999);
-    $expiredTime = date('Y-m-d H:i:s', strtotime('+30 minutes'));
-    $sql = "INSERT INTO otps (otp_code, expired, user_id, event_id) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssii", $otpCode, $expiredTime, $userId, $eventId);
-    if ($stmt->execute()) {
-        return $otpCode;
-    } else {
-        return false;
-    }
+
+function generateOtp($userId = 1){
+    $prefix = str_pad((string)$userId, 2, '0', STR_PAD_LEFT);
+    $genOtp = rand(1000,9999);
+    return $prefix . $genOtp;
 }
 
-function verifyOTP($inputOtp, $eventId) {
-    $conn = getConnection();
-    $sql = "SELECT * FROM otps WHERE otp_code = ? AND event_id = ? AND expired > NOW()";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $inputOtp, $eventId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        return true;
-    } else {
-        return false;
+function getExpireTime(){
+    return date('y-m-d H:i:s', strtotime('+5 minutes'));
+}
+
+function isExpire($expireDateTime){
+    $expirtimestamp = strtotime($expireDateTime);
+    $currentTime = time();
+    return $currentTime > $expirtimestamp;
+}
+
+function otpindatabse($input){
+    $getconn = getConnection();
+    $sql = 'select * from otps';
+    $result = $getconn->query($sql);
+    $allOtp = $result -> fetch_all(MYSQLI_ASSOC);
+
+    $input = trim($input);
+
+    foreach ($allOtp as $row) {
+        if ($input == $row['otp_id']) { 
+            if (isExpire($row['expired'])) {
+               return 'otp is expire';
+            }else {
+                $otp_id = $row['otp_id'];
+                
+                $extractUserId = (int)substr($input , 0, 2);
+
+                $checkSql = "SELECT * FROM checkins WHERE otp_id = '$otp_id'";
+                $res = getConnection() -> query($checkSql);
+
+
+                if ($res->num_rows > 0) {
+                    return 'You are checked in'; 
+                }else {
+
+                    $insertSql = "INSERT INTO checkins (user_id, otp_id) VALUES ($extractUserId, '$otp_id')";
+                    getConnection() -> query($insertSql);
+                    return 'checkin success';
+                }
+            }
+        }
     }
+    return false;
 }

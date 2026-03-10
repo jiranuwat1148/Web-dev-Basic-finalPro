@@ -3,6 +3,8 @@
 declare(strict_types=1);
 session_start();
 
+date_default_timezone_set('Asia/Bangkok');
+
 // กำหนดค่าคงที่สำหรับไดเรกทอรีต่างๆ ในโปรเจค
 const INCLUDES_DIR = __DIR__ . '/../includes';
 const ROUTE_DIR = __DIR__ . '/../routes';

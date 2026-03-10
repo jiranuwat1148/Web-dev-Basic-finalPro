@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 $hostname = 'localhost';
-$dbName = 'webdev_final_database';
-$username = 'user01';
-$password = 'abcd1234';
+$dbName = 'webdev_final_database2';
+$username = 'root';
+$password = '';
 $conn = new mysqli($hostname, $username, $password, $dbName);
 
 function getConnection(): mysqli

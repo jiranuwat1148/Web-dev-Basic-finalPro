@@ -11,7 +11,6 @@ if (!$eventId) {
 $user = getUsersByEmail($_SESSION['email']); 
 $userId = $user['user_id']; 
 
-
 $newOtp = generateOtp($userId);
 $expireTime = getExpireTime();
 

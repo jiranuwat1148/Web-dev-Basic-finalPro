@@ -10,3 +10,5 @@
  check-even.php
  generate-otp.php
  navbar.html
+
+#ไฟล์เปลี่ยนชื่อของ registration ทุกอัน

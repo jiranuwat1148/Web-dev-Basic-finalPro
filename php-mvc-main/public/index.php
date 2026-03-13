@@ -3,8 +3,6 @@
 declare(strict_types=1);
 session_start();
 
-date_default_timezone_set('Asia/Bangkok');
-
 // กำหนดค่าคงที่สำหรับไดเรกทอรีต่างๆ ในโปรเจค
 const INCLUDES_DIR = __DIR__ . '/../includes';
 const ROUTE_DIR = __DIR__ . '/../routes';
@@ -23,19 +21,19 @@ require_once INCLUDES_DIR . '/database.php';
 // ทุกครั้งที่มีการร้องขอเข้ามา ให้เรียกใช้ฟังก์ชัน dispatch
 //dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
-//ควบคุมการเข้าถึงหน้าเว็บด้วย session (ตัวอย่างการใช้งาน)
-const PUBLIC_ROUTES = ['/', '/login','/createacc'];
+// ควบคุมการเข้าถึงหน้าเว็บด้วย session (ตัวอย่างการใช้งาน)
+const PUBLIC_ROUTES = ['/login'];
 
 if (in_array(strtolower($_SERVER['REQUEST_URI']), PUBLIC_ROUTES)) {
     dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
     exit;
-} elseif (isset($_SESSION['timestamp']) && time() - $_SESSION['timestamp'] < 86000) {
-    // 10 Sec.
+} elseif (isset($_SESSION['timestamp']) && time() - $_SESSION['timestamp'] < 3600) {
     $unix_timestamp = time();
     $_SESSION['timestamp'] = $unix_timestamp;
     dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 } else {
+    unset($_SESSION['user_id']);
     unset($_SESSION['timestamp']);
-    header('Location: /');
+    header('Location: /login');
     exit;
 }

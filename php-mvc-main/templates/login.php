@@ -1,37 +1,53 @@
+<?php include 'header.php' ?>
+<script src="https://cdn.tailwindcss.com"></script>
 
-<!DOCTYPE html>
-<html lang="en">
+<main class="flex items-center justify-center min-h-[80vh] bg-gray-50">
+    <div class="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md border border-gray-100">
+        
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800">ยินดีต้อนรับ</h1>
+            <p class="text-gray-500 mt-2">กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ</p>
+        </div>
 
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login i here</title>
-</head>
+        <?php if (isset($data['error'])): ?>
+            <div class="bg-red-50 text-red-600 p-4 rounded-xl mb-6 text-sm font-medium border border-red-100 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                <?= $data['error'] ?>
+            </div>
+        <?php endif; ?>
 
-<body class="h-screen w-screen bg-gray-100 ">
-  <div class="flex flex-col h-full w-full">
-    <?php include 'navbar.php' ?>
-    <div class="flex flex-col items-center justify-center h-full w-full">
-      <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6 h-[70%] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-        <h2 class="text-6xl font-bold text-gray-900 mb-4 text-center mt-8">เข้าสู่ระบบ</h2>
-        <form action="login" method="post" class="flex flex-col gap-8 mt-20">
-          <input name="email" type="email" required class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-            placeholder="ชื่อผู้ใช้งานหรืออีเมล">
-          <input name="password" type="password" required class="focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-            placeholder="ใส่รหัสผ่าน">
-          <?php if (!empty($data['error'])): ?>
-            <p class="text-red-500"><?= $data['error'] ?></p>
-          <?php endif; ?>
-          <div class="flex items-center justify-between flex-wrap">
-            <a href="#" class="text-xl text-blue-500 hover:underline mt-4">ลืมรหัสผ่าน</a>
-            <p class="text-gray-900 mt-4 text-xl">ไม่มีบัญชี ? <a href="/createAcc" class="text-xl text-blue-500 -200 hover:underline mt-4">ลงทะเบียน</a></p>
-          </div>
-          <button type="submit" class="text-2xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">เข้าสู่ระบบ</button>
+        <form action="login" method="post" class="space-y-6">
+            <div>
+                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">อีเมลผู้ใช้</label>
+                <input type="email" name="email" id="email" required
+                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition" 
+                    placeholder="name@example.com" />
+            </div>
+            
+            <div>
+                <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">รหัสผ่าน</label>
+                <input type="password" name="password" id="password" required
+                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition" 
+                    placeholder="••••••••" />
+            </div>
+
+            <button type="submit" 
+                class="w-full py-4 bg-blue-600 text-white rounded-xl font-bold text-lg hover:bg-blue-700 shadow-lg shadow-blue-200 transition transform active:scale-[0.98]">
+                เข้าสู่ระบบ
+            </button>
         </form>
-      </div>
-    </div>
-  </div>
-</body>
 
-</html>
+        <p class="text-center text-gray-400 text-sm mt-8">
+            มีปัญหาในการใช้งาน? <a href="/contact" class="text-blue-500 hover:underline">ติดต่อผู้ดูแลระบบ</a>
+        </p>
+    </div>
+</main>
+
+<?php include 'footer.php' ?>

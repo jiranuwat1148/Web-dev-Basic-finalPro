@@ -1,5 +1,5 @@
 <?php
-unset($_SESSION['timestamp']);
-unset($_SESSION['email']);
-header('Location: /');
+session_unset();
+session_destroy();
+header('Location: /login');
 exit;

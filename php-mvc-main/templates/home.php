@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acctivity - หน้าหลัก</title>
+    <title>Activity - หน้าหลัก</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -38,7 +38,7 @@
                     <span class="block text-blue-500">กิจกรรมที่คุณชื่นชอบ</span>
                 </h1>
                 <p class="mt-3 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl md:mx-0">
-                    Acctivity คือศูนย์รวมกิจกรรมสุดมันส์ ไม่ว่าจะเป็นกีฬา ดนตรี อาสาสมัคร หรือเวิร์คช็อป เปิดโลกใหม่ของคุณได้ที่นี่
+                    Activity คือศูนย์รวมกิจกรรมสุดมันส์ ไม่ว่าจะเป็นกีฬา ดนตรี อาสาสมัคร หรือเวิร์คช็อป เปิดโลกใหม่ของคุณได้ที่นี่
                 </p>
                 <div class="mt-10 sm:flex sm:justify-center md:justify-start gap-4">
                     <div class="mt-3 sm:mt-0 sm:ml-3">
@@ -95,94 +95,14 @@
             </div>
         </div>
     </div>
-
-    <!-- ================= Featured Events (กิจกรรมแนะนำ) ================= -->
-    <div class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-8">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900">กิจกรรมยอดฮิต 🔥</h2>
-                    <p class="text-gray-500 mt-2">กิจกรรมที่มีผู้คนสนใจมากที่สุดในขณะนี้</p>
-                </div>
-                <a href="even_content.php" class="hidden md:flex text-blue-600 font-semibold hover:text-blue-800 items-center gap-1 transition">
-                    ดูทั้งหมด <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group border border-gray-100 flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=500&q=80" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-md">Tech</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-1 group-hover:text-blue-600 transition">Tech Conference 2024</h3>
-                        <p class="text-gray-500 text-sm mb-4 flex-1 line-clamp-2">งานสัมมนาเทคโนโลยีที่ใหญ่ที่สุด พบกับนวัตกรรมใหม่ๆ และ Speaker ระดับโลก</p>
-                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                            <div class="flex items-center text-gray-400 text-sm">
-                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i> 12 ธ.ค.
-                            </div>
-                            <a href="even_content.php" class="text-blue-600 font-bold hover:underline text-sm">รายละเอียด</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group border border-gray-100 flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=500&q=80" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-2 right-2 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-md">Art</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-1 group-hover:text-purple-600 transition">นิทรรศการศิลปะร่วมสมัย</h3>
-                        <p class="text-gray-500 text-sm mb-4 flex-1 line-clamp-2">เสพงานศิลป์ จิบกาแฟ พร้อมพูดคุยกับศิลปินเจ้าของผลงาน</p>
-                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                            <div class="flex items-center text-gray-400 text-sm">
-                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i> 15 ม.ค.
-                            </div>
-                            <a href="even_content.php" class="text-blue-600 font-bold hover:underline text-sm">รายละเอียด</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group border border-gray-100 flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=80" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-md">Health</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-1 group-hover:text-green-600 transition">วิ่งมาราธอนการกุศล</h3>
-                        <p class="text-gray-500 text-sm mb-4 flex-1 line-clamp-2">วิ่งเพื่อสุขภาพและร่วมบริจาคให้กับโรงพยาบาลในชนบท</p>
-                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                            <div class="flex items-center text-gray-400 text-sm">
-                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i> 20 ก.พ.
-                            </div>
-                            <a href="even_content.php" class="text-blue-600 font-bold hover:underline text-sm">รายละเอียด</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8 text-center md:hidden">
-                <a href="even_content.php" class="inline-block px-6 py-2 border border-blue-600 text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition">
-                    ดูทั้งหมด
-                </a>
-            </div>
-        </div>
-    </div>
-
+    
     <!-- ================= Footer ================= -->
     <footer class="bg-gray-800 text-white py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <!-- Brand -->
                 <div class="col-span-1 md:col-span-2">
-                    <h2 class="text-2xl font-bold text-white mb-4">Acctivity</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">Activity</h2>
                     <p class="text-gray-400 text-sm max-w-sm">
                         แพลตฟอร์มที่เชื่อมโยงผู้คนเข้าด้วยกันผ่านกิจกรรมที่หลากหลาย สร้างประสบการณ์ใหม่ๆ และความทรงจำดีๆ ไปด้วยกัน
                     </p>
@@ -192,8 +112,7 @@
                     <h3 class="text-lg font-semibold mb-4 text-gray-200">เมนูลัด</h3>
                     <ul class="space-y-2 text-gray-400 text-sm">
                         <li><a href="#" class="hover:text-white transition">หน้าแรก</a></li>
-                        <li><a href="even_content.php" class="hover:text-white transition">ค้นหากิจกรรม</a></li>
-                        <li><a href="login.php" class="hover:text-white transition">เข้าสู่ระบบ</a></li>
+                        <li><a href="/login" class="hover:text-white transition">เข้าสู่ระบบ</a></li>
                     </ul>
                 </div>
                 <!-- Contact -->

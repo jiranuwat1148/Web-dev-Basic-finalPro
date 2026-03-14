@@ -22,12 +22,12 @@
                     </div>
                     <div>
                         <p>รหัสผ่านใหม่</p>
-                        <input name="NewPw" type="password" required class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                        <input name="NewPw" type="password" min="8" required class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                             placeholder="รหัสผ่านใหม่">
                     </div>
                     <div>
                         <p>ยืนยันรหัสผ่านใหม่</p>
-                        <input name="ConfirmNewPw" type="password" required class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                        <input name="ConfirmNewPw" type="password" min="8" required class="w-full focus:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] text-2xl bg-gray-100 text-gray-900 border-0 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                             placeholder="ยืนยันรหัสผ่านใหม่">
                         <?php if (!empty($data['message'])): ?>
                             <p class="text-red-500"><?= $data['message'] ?></p>

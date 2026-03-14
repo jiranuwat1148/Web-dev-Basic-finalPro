@@ -204,7 +204,21 @@ function deleteEvent(int $eventId, int $userId): bool {
     
     return $stmt->execute();
 }
-
+function deleteEventImage(int $eventId, string $imagePath): bool {
+    $conn = getConnection();
+    
+    // 1. ลบไฟล์ออกจากโฟลเดอร์เซิร์ฟเวอร์ (เพื่อไม่ให้กินพื้นที่)
+    $filePath = __DIR__ . '/../public/' . $imagePath;
+    if (file_exists($filePath)) {
+        unlink($filePath);
+    }
+    
+    // 2. ลบข้อมูลพาทรูปภาพออกจากฐานข้อมูล
+    $sql = "DELETE FROM event_images WHERE event_id = ? AND image_path = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("is", $eventId, $imagePath);
+    return $stmt->execute();
+}
 
 function updateEvent(int $eventId, array $data, int $userId): bool {
     $conn = getConnection();

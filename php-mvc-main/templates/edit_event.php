@@ -126,7 +126,7 @@
                     ยกเลิก
                 </a>
 
-                <button type="submit" name="submit_update"
+                <button type="submit" name="submit_update" id="submitBtn"
                     class="px-8 py-3 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 shadow-lg transition">
                     บันทึกการแก้ไข
                     

@@ -87,3 +87,25 @@ function getNumberRegisByEvent(int $event, string $status): int
 
     return (int)$row['total'];
 }
+
+function isDecline(string $user_id, int $event_id): bool
+{
+    global $conn;
+    $status = 'Decline';
+    $sql = "SELECT * FROM registrations WHERE user_id = ? AND event_id = ? AND status = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('iis', $user_id, $event_id, $status);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    return $result->num_rows > 0;
+}
+function updateRegisByUserAndEvent(int $id, string $status, int $event): bool
+{
+    global $conn;
+    $sql = 'update registrations set status = ? where user_id = ? and event_id = ? ';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('sii', $status, $id, $event);
+    $stmt->execute();
+    return  $stmt->affected_rows > 0;
+}

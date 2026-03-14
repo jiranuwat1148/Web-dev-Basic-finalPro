@@ -41,7 +41,7 @@ $reg_eventPending = getRegisByEvent($data['Event'], 'pending');
                         ?>
                                 <tr class="text-center">
                                     <td class="border px-4 py-2"><?= $i ?></td>
-                                    <td class="border px-4 py-2"><?= $user->NAME ?></td>
+                                    <td class="border px-4 py-2"><?= $user->name ?></td>
                                     <td class="border px-4 py-2"><?= $user->gender ?></td>
                                     <td class="border px-4 py-2"><?= $age ?></td>
                                 </tr>
@@ -84,7 +84,7 @@ $reg_eventPending = getRegisByEvent($data['Event'], 'pending');
                         ?>
                                 <tr class="text-center">
                                     <td class="border px-4 py-2"><?= $i ?></td>
-                                    <td class="border px-4 py-2"><?= $user->NAME ?></td>
+                                    <td class="border px-4 py-2"><?= $user->name ?></td>
                                     <td class="border px-4 py-2"><?= $user->gender ?></td>
                                     <td class="border px-4 py-2"><?= $age ?></td>
                                     <td class="border px-4 py-2">

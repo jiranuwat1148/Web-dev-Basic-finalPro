@@ -24,7 +24,7 @@
             <p class="text-red-500"><?= $data['error'] ?></p>
           <?php endif; ?>
           <div class="flex items-center justify-between flex-wrap">
-            <a href="#" class="text-xl text-blue-500 hover:underline mt-4">ลืมรหัสผ่าน</a>
+            <a href="#" class="text-xl text-blue-500 hover:underline mt-4"></a>
             <p class="text-gray-900 mt-4 text-xl">ไม่มีบัญชี ? <a href="/createAcc" class="text-xl text-blue-500 -200 hover:underline mt-4">ลงทะเบียน</a></p>
           </div>
           <button type="submit" class="text-2xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">เข้าสู่ระบบ</button>

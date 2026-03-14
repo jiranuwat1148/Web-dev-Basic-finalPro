@@ -95,6 +95,7 @@
         placeholder="สร้างรหัสผ่าน"
         type="password"
         name="password"
+        min="8"
         required>
       </div>
 
@@ -109,6 +110,7 @@
         placeholder="ใส่รหัสผ่านอีกครั้ง"
         type="password"
         name="Cpassword"
+        min="8"
         required>
       </div>
 

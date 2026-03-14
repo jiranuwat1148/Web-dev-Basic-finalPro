@@ -92,9 +92,18 @@
                                             </button>
                                         </form>
                                     <?php } else { ?>
-                                        <div class="py-2 textcolor">
-                                            ลงทะเบียนแล้ว
-                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div class="py-2 text-green-600 font-bold text-center">
+                                                ลงทะเบียนแล้ว
+                                            </div>
+                                            
+                                            <form method="POST" action="/generate_otp">
+                                                <input type="hidden" name="event_id" value="<?= $event['event_id'] ?>">
+                                                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-1 rounded shadow transition">
+                                                    รับรหัส OTP
+                                                </button>
+                                            </form>
+                                            </div>
                                     <?php } ?>
                                     <button onclick="toggleDetail('db-<?php echo $event['event_id']; ?>')" class="w-full bg-white text-gray-800 py-1 rounded shadow border">
                                         Viewport ▼

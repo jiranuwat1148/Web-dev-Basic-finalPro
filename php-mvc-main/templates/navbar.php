@@ -4,7 +4,7 @@
     <!-- Logo -->
     <div class="text-xl font-bold mx-4 text-white">
       <!-- เอา w-1/2 ออก ใช้ flex ธรรมชาติ -->
-      <h1><a href="/home">Acctivity</a></h1>
+      <h1><a href="/home">Activity</a></h1>
     </div>
 
     <!-- Desktop Menu -->

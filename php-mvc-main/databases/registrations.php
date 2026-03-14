@@ -70,3 +70,20 @@ function isJoined(string $user_id, int $event_id): bool
     return $result->num_rows > 0;
 }
 
+function getNumberRegisByEvent(int $event, string $status): int
+{
+    global $conn;
+
+    $sql = "SELECT COUNT(*) as total 
+            FROM registrations 
+            WHERE event_id = ? AND status = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("is", $event, $status);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    return (int)$row['total'];
+}

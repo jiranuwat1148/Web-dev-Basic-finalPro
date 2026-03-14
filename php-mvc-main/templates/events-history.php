@@ -34,7 +34,7 @@
                 <p class="text-sm text-gray-500">วันที่ <?= $date = (new DateTime($row->start_date))->format('d/m/Y'); ?> เวลา : <?= (new DateTime($row->start_date))->format('H:i'); ?> - <?= (new DateTime($row->end_date))->format('H:i'); ?></p>
             </div>
         </div>
-        
+        <button class="text-blue-600 hover:underline">ดูรายละเอียด</button>
     </div>
     <?php } ?>
 </div>

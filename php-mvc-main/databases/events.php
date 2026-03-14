@@ -58,21 +58,58 @@ function insertEvent(array $data): int
 function insertEventImages(int $eventId, array $files): void
 {
     $conn = getConnection();
-    $uploadPath = __DIR__ . '/../public/uploads/';
+
+    // 1. กำหนดโฟลเดอร์ที่จะเก็บไฟล์รูปภาพ (เก็บไว้ใน public/img/)
+    $uploadDir = __DIR__ . '/../public/img/'; 
+    
+    // ถ้ายังไม่มีโฟลเดอร์ img ให้สร้างใหม่โดยอัตโนมัติ
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
 
     foreach ($files['tmp_name'] as $key => $tmpName) {
-        $fileName = time() . '_' . basename($files['name'][$key]);
-        move_uploaded_file($tmpName, $uploadPath . $fileName);
+        if ($files['error'][$key] === UPLOAD_ERR_OK) {
+            
+            // 2. ดึงนามสกุลไฟล์ออกมา (เช่น jpg, png)
+            $fileExtension = strtolower(pathinfo($files['name'][$key], PATHINFO_EXTENSION));
+            
+            // 3. สร้างชื่อไฟล์ใหม่แบบสุ่ม เพื่อป้องกันปัญหาคนอัปโหลดรูปชื่อซ้ำกัน
+            $newFileName = uniqid('event_', true) . '.' . $fileExtension;
+            
+            // 4. พาทสำหรับเซฟไฟล์ลงเครื่องเซิร์ฟเวอร์
+            $destination = $uploadDir . $newFileName;
+            
+            // 5. พาทสำหรับบันทึกลง Database (ตรงกับเงื่อนไข CHECK Constraint ที่เราทำไว้)
+            $imagePath = 'img/' . $newFileName; 
 
-        $sql = "INSERT INTO event_images (event_id, image_path)
-                VALUES (?, ?)";
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("is", $eventId, $fileName);
-        $stmt->execute();
+            // 6. ทำการย้ายไฟล์จาก Temp ไปที่โฟลเดอร์ปลายทาง
+            if (move_uploaded_file($tmpName, $destination)) {
+                
+                // 7. บันทึกข้อมูลลงตาราง event_images (ใช้แค่ event_id และ image_path)
+                $sql = "INSERT INTO event_images (event_id, image_path) VALUES (?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("is", $eventId, $imagePath);
+                $stmt->execute();
+                
+            }
+        }
     }
 }
-
+// ฟังก์ชันสำหรับดึงรูปภาพของกิจกรรม
+function getEventImages(int $eventId): array {
+    $conn = getConnection();
+    $sql = "SELECT image_path FROM event_images WHERE event_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $eventId);
+    $stmt->execute();
+    
+    $result = $stmt->get_result();
+    $images = [];
+    while ($row = $result->fetch_assoc()) {
+        $images[] = $row['image_path'];
+    }
+    return $images;
+}
 function getAllEvents($search = '', $startDate = '', $endDate = ''): array
 {
     $conn = getConnection();

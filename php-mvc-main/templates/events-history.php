@@ -24,7 +24,7 @@
             </div>
             <div>
                 <h4 class="font-bold text-gray-800"><?= $row->title ?></h4>
-                <p class="text-sm text-gray-500">สถานะ : <?= $row->STATUS ?></p>
+                <p class="text-sm text-gray-500">สถานะ : <?= $row->status ?></p>
                 <p class="text-sm text-gray-500">วันที่ <?= $date = (new DateTime($row->start_date))->format('d/m/Y'); ?> เวลา : <?= (new DateTime($row->start_date))->format('H:i'); ?> - <?= (new DateTime($row->end_date))->format('H:i'); ?></p>
             </div>
         </div>

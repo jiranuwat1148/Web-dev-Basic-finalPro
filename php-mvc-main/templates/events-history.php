@@ -20,7 +20,13 @@
     <div class="w-full bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md transition">
         <div class="flex items-center gap-4">
             <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 font-bold">
-                E 
+                <?php 
+                            // ดึงรูปภาพจากฐานข้อมูลโดยใช้ event_id
+                            $eventImages = getEventImages($row->event_id); 
+                            // ถ่ามีรูปให้เอารูปแรกมาโชว์ ถ้าไม่มีให้ใช้รูปตัวอย่าง
+                            $displayImage = !empty($eventImages) ? '/' . $eventImages[0] : 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
+                        ?>
+                        <img src="<?= htmlspecialchars($displayImage) ?>" alt="Event Image" class="w-full h-full object-cover rounded-lg">
             </div>
             <div>
                 <h4 class="font-bold text-gray-800"><?= $row->title ?></h4>

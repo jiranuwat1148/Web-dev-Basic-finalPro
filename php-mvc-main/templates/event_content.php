@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,10 +62,19 @@
                     <?php foreach ($data['events'] as $event): ?>
                         <div class="w-full rounded-lg px-4 py-4 flex flex-col shadow-lg bg-white border border-gray-100">
                             <div class="flex justify-between items-center gap-4 h-32">
-                                <div class="w-32 h-32 overflow-hidden rounded-lg shrink-0 bg-gray-100 border flex justify-center items-center">
-                                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
-                                </div>
+                                <?php
+                                // 1. เรียกใช้ฟังก์ชันเพื่อหาว่ากิจกรรมนี้มีรูปไหม
+                                $eventImages = getEventImages($event['event_id']);
 
+                                // 2. ถ้ามีรูป ให้เอารูปแรกมาแสดง (ใส่ '/' นำหน้าเพื่อให้ path ถูกต้องเวลาอ้างอิงจาก public)
+                                // แต่ถ้าไม่มีรูป ให้ใช้รูปตัวอย่าง (Default Image)
+                                if (!empty($eventImages)) {
+                                    $displayImage = '/' . $eventImages[0];
+                                } else {
+                                    $displayImage = 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
+                                }
+                                ?>
+                                <img src="<?php echo htmlspecialchars($displayImage); ?>" class="w-32 h-32 overflow-hidden rounded-lg shrink-0 bg-gray-100 border flex justify-center items-center" alt="Event Image">
                                 <div class="flex-1 h-full p-3 overflow-hidden flex flex-col justify-between">
                                     <div>
                                         <h1 class="text-xl font-bold mb-1"><?php echo htmlspecialchars($event['title']); ?></h1>
@@ -84,18 +92,9 @@
                                             </button>
                                         </form>
                                     <?php } else { ?>
-                                        <div class="flex flex-col gap-2">
-                                            <div class="py-2 text-green-600 font-bold text-center">
-                                                ลงทะเบียนแล้ว
-                                            </div>
-                                            
-                                            <form method="POST" action="/generate_otp">
-                                                <input type="hidden" name="event_id" value="<?= $event['event_id'] ?>">
-                                                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-1 rounded shadow transition">
-                                                    รับรหัส OTP
-                                                </button>
-                                            </form>
-                                            </div>
+                                        <div class="py-2 textcolor">
+                                            ลงทะเบียนแล้ว
+                                        </div>
                                     <?php } ?>
                                     <button onclick="toggleDetail('db-<?php echo $event['event_id']; ?>')" class="w-full bg-white text-gray-800 py-1 rounded shadow border">
                                         Viewport ▼
@@ -103,33 +102,47 @@
                                 </div>
                             </div>
                             <div id="db-<?php echo $event['event_id']; ?>" class="grid grid-rows-[0fr] transition-all duration-500 ease-in-out">
-                                <div class="overflow-hidden p-4 bg-gray-50 mt-2 rounded">
-                                    <p class="mt-2 text-gray-700"><?php echo nl2br(htmlspecialchars($event['description'])); ?></p>
-                                    <div class="mt-2 space-y-1 text-sm text-gray-600">
-                                                    <div class="flex items-center gap-2">
-                                                        <span class="font-semibold text-blue-600">📅 เริ่มต้น:</span>
-                                                        <?php
-                                                        // แปลง datetime จากฐานข้อมูลให้เป็นรูปแบบที่อ่านง่าย
-                                                        echo date('d/m/Y H:i', strtotime($event['start_date']));
-                                                        ?> น.
-                                                    </div>
-                                                    <div class="flex items-center gap-2">
-                                                        <span class="font-semibold text-red-600">🏁 สิ้นสุด:</span>
-                                                        <?php
-                                                        echo date('d/m/Y H:i', strtotime($event['end_date']));
-                                                        ?> น.
-                                                    </div>
+                                <div class="overflow-hidden p-4 bg-white mt-2 rounded">
+                                    <?php 
+                                    // ตัดรูปแรกออก (เพราะโชว์เป็นหน้าปกไปแล้ว) และเก็บเฉพาะ "รูปที่เหลือ"
+                                    $remainingImages = array_slice($eventImages, 1); 
+                                    
+                                    // ตรวจสอบว่ามีรูปภาพเหลือให้แสดงไหม
+                                    if (!empty($remainingImages)): 
+                                    ?>
+                                        <div class="flex gap-3 overflow-x-auto pb-4 mt-5 mb-4 border-b border-gray-200 no-scrollbar snap-x">
+                                            <?php foreach ($remainingImages as $img): ?>
+                                                <div class="shrink-0 w-56 h-36 rounded-lg overflow-hidden border border-gray-200 shadow-sm snap-center">
+                                                    <img src="/<?php echo htmlspecialchars($img); ?>" class="w-full h-full object-cover" alt="Gallery Image">
                                                 </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <p class="mt-5 text-gray-700"><?php echo nl2br(htmlspecialchars($event['description'])); ?></p>
+                                    <div class="mt-2 space-y-1 text-sm text-gray-600">
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-semibold text-blue-600">📅 เริ่มต้น:</span>
+                                            <?php
+                                            // แปลง datetime จากฐานข้อมูลให้เป็นรูปแบบที่อ่านง่าย
+                                            echo date('d/m/Y H:i', strtotime($event['start_date']));
+                                            ?> น.
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-semibold text-red-600">🏁 สิ้นสุด:</span>
+                                            <?php
+                                            echo date('d/m/Y H:i', strtotime($event['end_date']));
+                                            ?> น.
+                                        </div>
+                                    </div>
                                     <p><strong>📍 สถานที่:</strong> <?php echo htmlspecialchars($event['location'] ?? 'ไม่ระบุ'); ?></p>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                
-                </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
@@ -137,28 +150,28 @@
     .no-scrollbar::-webkit-scrollbar {
         display: none;
     }
+
     .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
     }
 </style>
 
- <script>
-        function toggleDetail(id) {
-            const element = document.getElementById(id);
-            
-            // เช็คว่าเปิดอยู่ไหม
-            if (element.classList.contains('grid-rows-[0fr]')) {
-                // ถ้าปิดอยู่ -> เปิด (1fr)
-                element.classList.remove('grid-rows-[0fr]');
-                element.classList.add('grid-rows-[1fr]');
-            } else {
-                // ถ้าเปิดอยู่ -> ปิด (0fr)
-                element.classList.remove('grid-rows-[1fr]');
-                element.classList.add('grid-rows-[0fr]');
-            }
+<script>
+    function toggleDetail(id) {
+        const element = document.getElementById(id);
+
+        // เช็คว่าเปิดอยู่ไหม
+        if (element.classList.contains('grid-rows-[0fr]')) {
+            // ถ้าปิดอยู่ -> เปิด (1fr)
+            element.classList.remove('grid-rows-[0fr]');
+            element.classList.add('grid-rows-[1fr]');
+        } else {
+            // ถ้าเปิดอยู่ -> ปิด (0fr)
+            element.classList.remove('grid-rows-[1fr]');
+            element.classList.add('grid-rows-[0fr]');
         }
-
-    </script>
-
-
+    }
+</script>

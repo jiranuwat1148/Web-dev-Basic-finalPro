@@ -29,12 +29,17 @@ $event_his = getRegisByUser($result['user_id'], $searchHis);
             <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
                 <img src="https://icons.veryicon.com/png/o/miscellaneous/commonly-used-icon-1/personal-25.png" alt="Profile_Me" class="w-full h-full object-cover">
             </div>
-            <h2 class="mt-4 text-2xl font-bold text-gray-800"><?= $result['NAME'] ?></h2>
+            <h2 class="mt-4 text-2xl font-bold text-gray-800"><?= $result['name'] ?></h2>
 
             <div class="mt-8 w-full px-6 space-y-2">
                 <?php $page = isset($_POST['page']) ? $_POST['page']  : 'profile_info'; ?>
                 <form action="" method="post" class="flex flex-col flex-1">
 
+                    <button type="submit" name="subProfile"
+                        class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
+                    <?php echo (isset($_POST['subProfile']) || empty($_POST)) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
+                        👤 Profile Info
+                    </button>
                     <button type="submit" name="subHis"
                         class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
                     <?php echo isset($_POST['subHis']) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
@@ -47,21 +52,9 @@ $event_his = getRegisByUser($result['user_id'], $searchHis);
                         📅 My Events
                     </button>
 
-                    <button type="submit" name="subProfile"
-                        class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
-                    <?php echo (isset($_POST['subProfile']) || empty($_POST)) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
-                        👤 Profile Info
-                    </button>
-
-                    <button type="submit" name="subChart"
-                        class="block w-full text-left px-4 py-3 rounded-lg font-medium transition duration-200 
-                    <?php echo isset($_POST['subChart']) ? 'bg-blue-50 text-blue-600 shadow-sm border-l-4 border-blue-500' : 'text-gray-600 hover:bg-gray-50'; ?>">
-                        📊 Chart
-                    </button>
-
                 </form>
             </div>  
-            <a href="/changePw" class="bg-yellow-400 text-center text-white p-2 rounded-lg m-4 hover:shadow-md transition">เปลี่ยนรหัสผ่าน</a>
+            <a href="/changepw" class="bg-yellow-400 text-center text-white p-2 rounded-lg m-4 hover:shadow-md transition">เปลี่ยนรหัสผ่าน</a>
             <form action="logout" method="post">
             <button type="submit" onclick="return confirmLogout()" class="bg-red-600 text-center text-white p-2 rounded-lg hover:shadow-md transition">ออกจากระบบ</button>
             </form>
@@ -76,8 +69,6 @@ $event_his = getRegisByUser($result['user_id'], $searchHis);
                     include __DIR__ . '/my-events.php';
                 } else if (isset($_POST['subProfile'])) {
                     include __DIR__ . '/profile-info.php';
-                } else if (isset($_POST['subChart'])) {
-                    include __DIR__ . '/chart.html';
                 }else if (isset($_POST['Edit'])) {
                     include __DIR__ . '/profile-edit.php';
                 } else {

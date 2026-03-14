@@ -79,7 +79,18 @@
                 <textarea name="description" rows="4" placeholder="อธิบายกิจกรรมของคุณที่นี่..."
                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
             </div>
-
+            <div>
+                <label class="block mb-2 font-semibold text-gray-700">รูปภาพประกอบ (อัปโหลดได้หลายรูป)</label>
+                <p class="text-xs text-blue-600 mb-3">
+                    💡 <b>วิธีเลือกหลายรูป:</b> <br>
+                    💻 <b>คอมพิวเตอร์:</b> กดปุ่ม Ctrl (หรือ Cmd) ค้างไว้แล้วคลิกเลือกรูป <br>
+                    📱 <b>มือถือ:</b> แตะค้างที่รูปแรก แล้วแตะเลือกรูปอื่นๆ ต่อได้เลย
+                </p>
+                <input type="file" name="images[]" id="imageInput" multiple accept="image/*"
+                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer border border-gray-300 rounded-lg">
+                
+                <div id="previewBox" class="mt-4 flex flex-wrap gap-4"></div>
+            </div>
             <div>
                 <label class="block mb-2 font-semibold text-gray-700">รูปภาพประกอบ (ได้มากกว่า 1 รูป)</label>
                 <input type="file" name="images[]" multiple

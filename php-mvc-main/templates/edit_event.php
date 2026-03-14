@@ -68,7 +68,9 @@
                         class="w-full p-3 border border-gray-300 rounded-lg">
                 </div>
             </div>
-
+            <p id="timeWarning" class="text-red-500 text-sm font-semibold hidden mt-[-10px]">
+                ⚠️ ข้อความเตือนจะแสดงตรงนี้
+            </p>
             <div>
                 <label class="block mb-2 font-semibold text-gray-700">สถานที่ (Location)</label>
                 <input type="text" name="location" value="<?= htmlspecialchars($data['event']['location']) ?>"
@@ -132,6 +134,50 @@
             </div>
         </form>
     </div>
+    <script>
+        var startDate = document.querySelector('input[name="start_date"]');
+        var startTime = document.querySelector('input[name="start_time"]');
+        var endDate = document.querySelector('input[name="end_date"]');
+        var endTime = document.querySelector('input[name="end_time"]');
+        
+        var warningText = document.getElementById('timeWarning');
+        var submitBtn = document.getElementById('submitBtn');
+
+        function checkEventTime() {
+            if (!startDate.value || !startTime.value || !endDate.value || !endTime.value) {
+                return;
+            }
+
+            var start = new Date(startDate.value + 'T' + startTime.value);
+            var end = new Date(endDate.value + 'T' + endTime.value);
+            var now = new Date();
+
+            if (start < now) {
+                warningText.innerHTML = "⚠️หากแก้ไขเวลาใหม่ ไม่สามารถตั้งเป็นเวลาในอดีตได้";
+                warningText.style.display = "block";
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } 
+            else if (end <= start) {
+                warningText.innerHTML = "⚠️เวลาสิ้นสุดกิจกรรม ไม่สามารถใช้เวลาที่ผ่านไปแล้วและเวลาที่ตรงกับตอนเริ่ม";
+                warningText.style.display = "block";
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } 
+            else {
+                warningText.style.display = "none";
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // ให้ระบบเช็คเฉพาะตอนที่มีคนมากดเปลี่ยนวัน-เวลาเท่านั้น 
+        // (ถ้าเข้ามาแก้แค่ชื่อหรือรายละเอียด ระบบจะไม่บล็อกแม้กิจกรรมจะเริ่มไปแล้ว)
+        startDate.onchange = checkEventTime;
+        startTime.onchange = checkEventTime;
+        endDate.onchange = checkEventTime;
+        endTime.onchange = checkEventTime;
+    </script>
 </body>
 
 </html>

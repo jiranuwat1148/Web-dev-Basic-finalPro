@@ -91,11 +91,6 @@
                 
                 <div id="previewBox" class="mt-4 flex flex-wrap gap-4"></div>
             </div>
-            <div>
-                <label class="block mb-2 font-semibold text-gray-700">รูปภาพประกอบ (ได้มากกว่า 1 รูป)</label>
-                <input type="file" name="images[]" multiple
-                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer border border-gray-300 rounded-lg">
-            </div>
 
             <div class="flex justify-end gap-4 pt-4">
                 <a href="/event_content"

@@ -27,7 +27,7 @@
     </div>
 
     <!-- Form -->
-    <form class="flex flex-col gap-4 md:gap-5" action="createAcc" method="post">
+    <form class="flex flex-col gap-4 md:gap-5" action="createacc" method="post">
 
       <!-- Name -->
       <div>

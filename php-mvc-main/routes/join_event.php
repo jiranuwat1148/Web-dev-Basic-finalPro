@@ -8,6 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isJoined($user_id, $event_id)) {
         joinEvent($user_id, $event_id);
     }
+    elseif(isDecline($user_id, $event_id)){
+        $status = 'pending';
+        updateRegisByUserAndEvent($user_id, $status, $event_id);
+    }
 
     header("Location: /event_content");
     exit;

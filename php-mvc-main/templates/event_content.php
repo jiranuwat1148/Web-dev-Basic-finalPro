@@ -84,7 +84,7 @@
                                 <div class="w-32 h-full flex flex-col justify-center items-center gap-2 p-2 shrink-0">
                                     <?php
                                     $user = getUsersByEmail($_SESSION['email']);
-                                    if (!isJoined($user['user_id'], $event['event_id'])) { ?>
+                                    if (!isJoined($user['user_id'], $event['event_id']) || isDecline($user['user_id'], $event['event_id'])) { ?>
                                         <form method="POST" action="join_event">
                                             <button class="w-full bg-blue-600 hover:bg-blue-700 text-white text-center px-10 py-1 rounded shadow transition" type="submit" name="event_id" value="<?= $event['event_id'] ?>"
                                                 onclick="return confirm('ยืนยันเข้าร่วมกิจกรรมนี้?')">

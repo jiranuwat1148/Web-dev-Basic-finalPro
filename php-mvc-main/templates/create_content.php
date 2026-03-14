@@ -65,7 +65,9 @@
                     <input type="time" name="end_time" required class="w-full p-3 border border-gray-300 rounded-lg">
                 </div>
             </div>
-
+            <p id="timeWarning" class="text-red-500 text-sm font-semibold hidden mt-[-10px]">
+                ⚠️ ข้อความเตือนจะแสดงตรงนี้
+            </p>
             <div>
                 <label class="block mb-2 font-semibold text-gray-700">สถานที่ (Location)</label>
                 <input type="text" name="location" placeholder="เช่น ห้องคอม A หรือ ออนไลน์"
@@ -91,7 +93,7 @@
                     ยกเลิก
                 </a>
 
-                <button type="submit"
+                <button type="submit" id="submitBtn"
                     class="px-8 py-3 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 shadow-lg transition">
                     บันทึกกิจกรรม
                 </button>
@@ -99,45 +101,55 @@
         </form>
     </div>
     <script>
-        // 1. หาช่องอัปโหลด และ กล่องโชว์รูป จาก HTML มาเตรียมไว้
-        var inputFile = document.getElementById('imageInput');
-        var previewBox = document.getElementById('previewBox');
+        // 1. ดึงตัวแทนของแต่ละช่องมาเก็บไว้ในตัวแปร
+        var startDate = document.querySelector('input[name="start_date"]');
+        var startTime = document.querySelector('input[name="start_time"]');
+        var endDate = document.querySelector('input[name="end_date"]');
+        var endTime = document.querySelector('input[name="end_time"]');
+        
+        var warningText = document.getElementById('timeWarning'); // กล่องข้อความเตือน
+        var submitBtn = document.getElementById('submitBtn'); // ปุ่มบันทึก
 
-        // 2. สั่งว่า "ถ้ามีการเลือกไฟล์ใหม่" ให้ทำคำสั่งในปีกกานี้
-        inputFile.onchange = function(event) {
-            
-            // ล้างรูปเก่าๆ ทิ้งก่อน เผื่อเปลี่ยนใจเลือกรูปใหม่
-            previewBox.innerHTML = ''; 
-
-            // เก็บรายชื่อไฟล์ทั้งหมดที่ถูกเลือกมาไว้ในตัวแปร files
-            var files = event.target.files;
-
-            // 3. ใช้ for loop วนรอบอ่านไฟล์ทีละรูป (เหมือนการแจกไพ่ทีละใบ)
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-
-                // สร้างเครื่องมือสำหรับ "อ่านไฟล์รูปภาพ"
-                var reader = new FileReader();
-
-                // 4. สั่งว่า "ถ้าอ่านรูปเสร็จแล้ว" ให้ทำคำสั่งในปีกกานี้
-                reader.onload = function(e) {
-                    // สร้างแท็ก <img src="..."> เปล่าๆ ขึ้นมา
-                    var img = document.createElement('img');
-                    
-                    // เอาข้อมูลรูปภาพที่อ่านได้ ยัดใส่เข้าไปใน src
-                    img.src = e.target.result;
-                    
-                    // ใส่คลาส Tailwind ให้รูปขนาดกะทัดรัด (กว้าง 24 สูง 24) และดูสวยงาม
-                    img.className = 'w-24 h-24 object-cover rounded-lg shadow-md border border-gray-200';
-                    
-                    // เอารูปที่เสร็จแล้ว ไปแปะโชว์ในกล่อง previewBox
-                    previewBox.appendChild(img);
-                };
-
-                // เริ่มลงมืออ่านไฟล์ (บรรทัดนี้สำคัญมาก ถ้าไม่มีมันจะไม่อ่าน)
-                reader.readAsDataURL(file);
+        // 2. ฟังก์ชันนี้จะทำงานทุกครั้งที่เราเปลี่ยนวันหรือเวลา
+        function checkEventTime() {
+            // ถ้ายังกรอกไม่ครบทั้ง 4 ช่อง ให้หยุดทำงานไปก่อน
+            if (!startDate.value || !startTime.value || !endDate.value || !endTime.value) {
+                return;
             }
-        };
+
+            // เอาวันที่กับเวลามาต่อกัน เพื่อสร้างเป็นเวลาที่คอมพิวเตอร์เข้าใจ
+            var start = new Date(startDate.value + 'T' + startTime.value);
+            var end = new Date(endDate.value + 'T' + endTime.value);
+            var now = new Date(); // เวลาปัจจุบันของวันนี้
+
+            // 3. เริ่มตรวจสอบเงื่อนไข
+            if (start < now) {
+                // ผิดกฎข้อ 1: เลือกเวลาในอดีต
+                warningText.innerHTML = "⚠️ไม่สามารถสร้างกิจกรรมย้อนหลังได้ กรุณาเลือกเวลาเริ่มใหม่";
+                warningText.style.display = "block"; // โชว์ข้อความ
+                submitBtn.disabled = true; // ล็อกปุ่ม
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed'); // ทำปุ่มสีจาง
+            } 
+            else if (end <= start) {
+                // ผิดกฎข้อ 2: เวลาจบ ดันเกิดก่อนเวลาเริ่ม
+                warningText.innerHTML = "⚠️เวลาสิ้นสุดกิจกรรม ไม่สามารถใช้เวลาที่ผ่านไปแล้วและเวลาที่ตรงกับตอนเริ่ม";
+                warningText.style.display = "block";
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } 
+            else {
+                // ทำถูกต้องหมดแล้ว
+                warningText.style.display = "none"; // ซ่อนข้อความ
+                submitBtn.disabled = false; // ปลดล็อกปุ่ม
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed'); // ให้ปุ่มสีเข้มเหมือนเดิม
+            }
+        }
+
+        // 4. สั่งให้ฟังก์ชัน checkEventTime ทำงานทุกครั้งที่มีการเปลี่ยนค่าในช่องต่างๆ
+        startDate.onchange = checkEventTime;
+        startTime.onchange = checkEventTime;
+        endDate.onchange = checkEventTime;
+        endTime.onchange = checkEventTime;
     </script>
 </body>
 

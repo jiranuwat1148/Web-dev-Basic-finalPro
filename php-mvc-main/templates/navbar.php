@@ -12,7 +12,7 @@
     <?php if(isset($_SESSION['timestamp'])){?>
     <div class="hidden md:flex flex-row gap-4 items-center">
       <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
-        <a href="/Account-detail">account-detail</a>
+        <a href="/account-detail">account-detail</a>
       </div>
       <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
         <a href="/event_content">event_content</a>
@@ -27,16 +27,7 @@
         <a href="/login">เข้าสู่ระบบ</a>
       </div>
       <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
-        <a href="/createAcc">ลงทะเบียน</a>
-      </div>
-      <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
-        <a href="/Account-detail">Account-detail</a>
-      </div>
-      <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
-        <a href="/event_content">event_content</a>
-      </div>
-      <div class="text-xl px-4 rounded-lg bg-gray-500 h-10 justify-center items-center flex text-center text-white cursor-pointer hover:bg-gray-600 transition">
-        <a href="/checkin-even">checkin-event</a>
+        <a href="/createacc">ลงทะเบียน</a>
       </div>
     </div>
     <?php }?>
